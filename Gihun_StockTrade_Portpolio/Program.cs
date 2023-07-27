@@ -1,6 +1,12 @@
+using StockTrade.Application.Interfaces;
+using StockTrade.Application.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 //Register Syncfusion license
 Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NGaF5cXmdCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdgWXhcd3RWRmlcWUd3W0c=");
+
+// Add Repository Pattern
+builder.Services.AddScoped<IApplicationUserRepository, ApplicationUserService>();
 
 // Add services to the container.
 builder.Services.AddRazorPages();
