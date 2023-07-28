@@ -1,0 +1,89 @@
+﻿@page
+@model Gihun_StockTrade_Portpolio.Pages.ApplicationUser.IndexModel
+@{
+}
+
+<form id="form-element" method="post" asp-page-handler="Register" >
+
+    <div class="form-group">
+        <label for="first-name">Name:</label>
+        <ejs-textbox id="Name" name="Name" placeholder="Name" width="50%"></ejs-textbox>
+    </div>
+    <div class="form-group">
+        <label for="last-name">E-mail:</label>
+        <ejs-textbox id="E-mail" name="Email" placeholder="E-mail" width="50%"></ejs-textbox>
+    </div>
+    <div class="form-group">
+        <label for="last-name">Password:</label>
+        <ejs-textbox id="Password" name="Password" type="Password" placeholder="Password" width="50%"></ejs-textbox>
+    </div>
+    <div class="form-group">
+        <label for="last-name">Confirm Password:</label>
+        <ejs-textbox id="ConfirmPassword" name="ConfirmPassword" type="Password" placeholder="Confirm Password" width="50%"></ejs-textbox>
+    </div>
+    <div class="form-group">
+        <label for="last-name">Address:</label>
+        <ejs-textbox id="Address" name="Address" placeholder="Address" width="50%"></ejs-textbox>
+    </div>
+    <div class="form-group">
+        <label for="last-name">PostCode:</label>
+        <ejs-textbox id="PostCode" name="PostCode" placeholder="PostCode" width="50%"></ejs-textbox>
+    </div>
+    <div class="form-group">
+        <label for="last-name">Mobile:</label>
+        <ejs-textbox id="Mobile" name="Mobile" placeholder="Mobile" width="50%"></ejs-textbox>
+    </div>
+
+    <div class="form-group">
+        <div class=" control-section">
+            <div id="wrapper" class="datepicker-section">
+                <div id="datepicker-control">
+                    <ejs-datepicker id="Birthday" placeholder="Choose a Date" width="50%"></ejs-datepicker>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <ejs-textbox id="IsConfirmed" name="IsConfirmed" value="0" type="hidden"></ejs-textbox>
+    </div>
+    <div class="form-group">
+        <ejs-textbox id="MemeberSince" name="MemeberSince" value=@DateTime.UtcNow type="hidden"></ejs-textbox>
+    </div>
+    <div class="form-group">
+        <ejs-textbox id="RoleId" name="RoleId" value="1" type="hidden"></ejs-textbox>
+    </div>
+
+    <ejs-button id="submit" content="Submit"></ejs-button>
+
+</form>
+
+
+<script>
+    // Sets required property in the FormValidator rules collection
+    var options = {
+        rules: {
+            'Name': { required: true },
+            'E-mail': { required: true },
+            'Password': { required: true },
+            'ConfirmPassword': { required: true },
+            'Address': { required: true },
+            'PostCode': { required: true },
+            'Mobile': { required: true },
+            'Birthday': { required: true },
+        },
+    };
+
+    // Defines FormValidator to validate the TextBox
+    var formObject = new ej.inputs.FormValidator('#form-element', options);
+
+    // Places error label outside the TextBox using the customPlacement event of FormValidator
+    formObject.customPlacement = function (element, errorElement) {
+        element.parentElement.parentElement.appendChild(errorElement);
+    };
+    // Form validates the input values using validate method of FormValidator
+    document.getElementById("submit").addEventListener('click', function () {
+        formObject.validate();
+    });
+</script>

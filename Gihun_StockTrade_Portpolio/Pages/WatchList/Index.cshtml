@@ -1,0 +1,16 @@
+﻿@page
+@using StockTrade.Application.Interfaces;
+@inject ISearchStockListRepository _searchStockListRepo;
+@model Gihun_StockTrade_Portpolio.Pages.WatchList.IndexModel
+
+@{
+    var dataSource = _searchStockListRepo.SymbolList();
+}
+
+<h1> test </h1>
+
+<form method="post" asp-page-handler="AddSymbol">
+    <ejs-autocomplete id="symbol" dataSource=@dataSource filter-type="Contains" show-popup-button="true" enable-auto-fill="true" watermark-text="Select value">
+        <e-autocomplete-fields id="symbol" Value=Symbol value=Symbol key="Symbol"></e-autocomplete-fields>
+    </ejs-autocomplete>
+</form>

@@ -5,8 +5,9 @@ var builder = WebApplication.CreateBuilder(args);
 //Register Syncfusion license
 Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NGaF5cXmdCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdgWXhcd3RWRmlcWUd3W0c=");
 
-// Add Repository Pattern
+// Add Repositories
 builder.Services.AddScoped<IApplicationUserRepository, ApplicationUserService>();
+builder.Services.AddScoped<ISearchStockListRepository, SearchStockListService>();
 
 // Add services to the container.
 builder.Services.AddRazorPages();
@@ -36,6 +37,8 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
+    
+
     app.UseExceptionHandler("/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();

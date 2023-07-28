@@ -1,0 +1,48 @@
+﻿@page
+@model Gihun_StockTrade_Portpolio.Pages.ApplicationUser.LoginModel
+
+
+<div class="container">
+
+    <h3> Login </h3>
+
+    <form id="form-element" method="post" >
+
+        <div class="form-group">
+            <label for="first-name">E-mail: </label>
+            <ejs-textbox id="Email" name="Email" placeholder="Email" width="50%"></ejs-textbox>
+        </div>
+
+        <div class="form-group">
+            <label for="last-name">Password: </label>
+            <ejs-textbox id="Password" type="password" name="Password" placeholder="Password" width="50%"></ejs-textbox>
+        </div>
+
+        <ejs-button id="submit" content="Submit" asp-page="ApplicationUser/Login" asp-page-handler="Login"></ejs-button>
+    </form>
+
+</div>
+
+
+
+<script>
+    // Sets required property in the FormValidator rules collection
+    var options = {
+        rules: {
+            'Email': { required: true },
+            'Password': { required: true },
+        },
+    };
+
+    // Defines FormValidator to validate the TextBox
+    var formObject = new ej.inputs.FormValidator('#form-element', options);
+
+    // Places error label outside the TextBox using the customPlacement event of FormValidator
+    formObject.customPlacement = function (element, errorElement) {
+        element.parentElement.parentElement.appendChild(errorElement);
+    };
+    // Form validates the input values using validate method of FormValidator
+    document.getElementById("submit").addEventListener('click', function () {
+        formObject.validate();
+    });
+</script>

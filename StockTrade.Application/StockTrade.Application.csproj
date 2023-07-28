@@ -12,11 +12,13 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\StockProject.Domain\StockTrade.Domain.csproj" />
+    <ProjectReference Include="..\StockProject.Infrastructure.Shared\StockProject.Infrastructure.Shared.csproj" />
   </ItemGroup>
 
 </Project>

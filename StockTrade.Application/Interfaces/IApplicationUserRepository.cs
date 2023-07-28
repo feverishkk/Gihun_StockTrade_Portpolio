@@ -1,4 +1,4 @@
-﻿using StockTrade.Application.ViewModel.Interfaces;
+﻿using StockTrade.Application.ViewModel.Users;
 using System.Data.SqlClient;
 
 namespace StockTrade.Application.Interfaces
@@ -6,9 +6,9 @@ namespace StockTrade.Application.Interfaces
     public interface IApplicationUserRepository
     {
 
-        void Register(RegisterViewModel model);
+        //void Register(RegisterViewModel model);
 
-        SqlParameter Register22(RegisterViewModel model);
+        SqlParameter Register(RegisterViewModel model);
 
     }
 }

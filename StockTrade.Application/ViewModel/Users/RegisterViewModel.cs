@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace StockTrade.Application.ViewModel.Interfaces
+namespace StockTrade.Application.ViewModel.Users
 {
     public class RegisterViewModel : User
     {
