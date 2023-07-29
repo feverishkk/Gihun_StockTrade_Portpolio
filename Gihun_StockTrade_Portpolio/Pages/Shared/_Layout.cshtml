@@ -87,32 +87,32 @@
 
                 <ul class="nav nav-pills nav-flush mb-auto text-center">
                     <li>
-                        <a asp-action="Index" asp-controller="Home" class="nav-link py-3 border-bottom" title="Home" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <a asp-page="Index" class="nav-link py-3 border-bottom" title="Home" data-bs-toggle="tooltip" data-bs-placement="right">
                             <span class="e-icons home e-info" width="24" height="24" role="img" aria-label="Home"><use xlink:href="#speedometer2" /></span>
                         </a>
                     </li>
                     <li>
-                        <a asp-action="Index" asp-controller="WatchLists" class="nav-link py-3 border-bottom" title="WatchLists" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <a asp-page="WatchList/Index" asp-page-handler="WatchList" class="nav-link py-3 border-bottom" title="WatchLists" data-bs-toggle="tooltip" data-bs-placement="right">
                             <span class="e-icons e-play" width="24" height="24" role="img" aria-label="WatchLists"><use xlink:href="#speedometer2" /></span>
                         </a>
                     </li>
                     <li>
-                        <a asp-action="Index" asp-controller="Stocks" class="nav-link py-3 border-bottom" title="Stocks" data-bs-toggle="tooltip" data-bs-placement="right">
-                            <span class="e-icons e-chart-2d-stacked-line-marked" width="24" height="24" role="img" aria-label="Stocks"><use xlink:href="#speedometer2" /></span>
+                        <a asp-page="Stock/Index" asp-page-handler="Stock" class="nav-link py-3 border-bottom" title="Stock" data-bs-toggle="tooltip" data-bs-placement="right">
+                            <span class="e-icons e-chart-2d-stacked-line-marked" width="24" height="24" role="img" aria-label="Stock"><use xlink:href="#speedometer2" /></span>
                         </a>
                     </li>
                     <li>
-                        <a asp-action="Index" asp-controller="Markets" class="nav-link py-3 border-bottom" title="Markets" data-bs-toggle="tooltip" data-bs-placement="right">
-                            <span class="e-icons fa fa-heart" width="24" height="24" role="img" aria-label="Markets"><use xlink:href="#table" /></span>
+                        <a asp-page="Market/Index" asp-page-handler="Market" class="nav-link py-3 border-bottom" title="Market" data-bs-toggle="tooltip" data-bs-placement="right">
+                            <span class="e-icons fa fa-heart" width="24" height="24" role="img" aria-label="Market"><use xlink:href="#table" /></span>
                         </a>
                     </li>
                     <li>
-                        <a asp-action="Index" asp-controller="Trade" class="nav-link py-3 border-bottom" title="Trade" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <a asp-page="Trade/Index" asp-page-handler="Trade" class="nav-link py-3 border-bottom" title="Trade" data-bs-toggle="tooltip" data-bs-placement="right">
                             <span class="e-icons fa fa-hammer" width="24" height="24" role="img" aria-label="Trade"><use xlink:href="#grid" /></span>
                         </a>
                     </li>
                     <li>
-                        <a asp-action="Index" asp-controller="Dashboard" class="nav-link py-3 border-bottom" title="Dashboard" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <a asp-action="Dashboard/Index" asp-controller="Dashboard" class="nav-link py-3 border-bottom" title="Dashboard" data-bs-toggle="tooltip" data-bs-placement="right">
                             <span class="e-icons profile" width="24" height="24" role="img" aria-label="Dashboard"><use xlink:href="#people-circle" /></span>
                         </a>
                     </li>

@@ -7,7 +7,7 @@ Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQx
 
 // Add Repositories
 builder.Services.AddScoped<IApplicationUserRepository, ApplicationUserService>();
-builder.Services.AddScoped<ISearchStockListRepository, SearchStockListService>();
+builder.Services.AddScoped<IWatchListRepository, WatchListService>();
 
 // Add services to the container.
 builder.Services.AddRazorPages();

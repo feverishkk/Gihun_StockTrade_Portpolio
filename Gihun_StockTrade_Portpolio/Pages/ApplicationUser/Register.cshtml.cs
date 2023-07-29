@@ -23,13 +23,13 @@ namespace Gihun_StockTrade_Portpolio.Pages.ApplicationUser
         {
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("CustomPage/404_NotFound");
+                return RedirectToPage("CustomPage/404_NotFound");
             }
             else
             {
                 if (model.Password != model.ConfirmPassword)
                 {
-                    return BadRequest("CustomPage/400_BadRequest");
+                    return RedirectToPage("CustomPage/400_BadRequest");
                 }
 
                 var hash = HashAndVerify.HashPassword(model.Password, out var salt);
@@ -42,10 +42,10 @@ namespace Gihun_StockTrade_Portpolio.Pages.ApplicationUser
                 // 0 == ¼º°ø
                 if ( Convert.ToInt32( result.SqlValue.ToString() ) == 0 )
                 {
-                    return RedirectToAction("/Index");
+                    return RedirectToPage("/Index");
                 }
 
-                return RedirectToAction("CustomPage/400_BadRequest");
+                return RedirectToPage("CustomPage/400_BadRequest");
             }
         }
 

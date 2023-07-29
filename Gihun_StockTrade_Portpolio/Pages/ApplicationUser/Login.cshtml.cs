@@ -19,7 +19,7 @@ namespace Gihun_StockTrade_Portpolio.Pages.ApplicationUser
         {
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("Privacy");
+                return RedirectToPage("Privacy");
             }
             else
             {
@@ -34,13 +34,14 @@ namespace Gihun_StockTrade_Portpolio.Pages.ApplicationUser
                         Secure = true
                     };
 
-                    Response.Cookies.Append( "Email", model.Email, cookie );
+                    Response.Cookies.Append( "Email",  model.Email,  cookie );
+                    Response.Cookies.Append( "UserId", model.UserId, cookie );
 
-                    return RedirectToAction( "/Index" );
+                    return RedirectToPage( "/Index" );
                 }
             }
 
-            return RedirectToAction("CustomPage/400_BadRequest");
+            return RedirectToPage("CustomPage/400_BadRequest");
         }
 
 
