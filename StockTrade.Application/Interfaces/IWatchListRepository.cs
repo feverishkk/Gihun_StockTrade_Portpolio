@@ -15,7 +15,7 @@ namespace StockTrade.Application.Interfaces
         string GetUserIdByEmail(string email);
         SqlParameter AddSymbol( string userId, string symbol );
 
-
+        List<string> GetUserWishList( string userId ); 
 
     }
 }

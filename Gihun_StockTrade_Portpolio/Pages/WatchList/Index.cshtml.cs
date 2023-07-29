@@ -2,6 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using StockProject.Infrastructure.Shared;
 using StockTrade.Application.Interfaces;
+using StockTrade.Application.ViewModel.API.WatchList;
+using System.Net.Http.Headers;
+using System.Text.Json;
 
 namespace Gihun_StockTrade_Portpolio.Pages.WatchList
 {
@@ -24,14 +27,14 @@ namespace Gihun_StockTrade_Portpolio.Pages.WatchList
 
             if( user == null || user == string.Empty || symbol == null || symbol == string.Empty ) 
             {
-                return RedirectToPage( "404_BadRequest" );
+                return RedirectToPage( "400_BadRequest" );
             }
 
             var userId = _watchListRepo.GetUserIdByEmail( user.ToString() );
 
             if( userId == string.Empty || userId == null )
             {
-                return RedirectToPage("404_BadRequest");
+                return RedirectToPage("404_NotFound");
             }
 
             var symbolList = _watchListRepo.SymbolList();
@@ -56,6 +59,23 @@ namespace Gihun_StockTrade_Portpolio.Pages.WatchList
             return RedirectToPage("Index");
         }
 
+
+        public ActionResult OnPostGetUserWishList( string userId )
+        {
+           
+            if( userId == string.Empty || userId == null )
+            {
+                return RedirectToPage("CustomPage/400_BadRequest");
+            }
+
+            var result = _watchListRepo.GetUserWishList( userId );
+
+            ViewData["WishList"] = result;
+
+            return RedirectToPage("Index");
+        }
+
+        
 
     }
 }

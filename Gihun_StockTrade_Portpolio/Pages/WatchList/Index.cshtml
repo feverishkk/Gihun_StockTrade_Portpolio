@@ -1,12 +1,17 @@
 ﻿@page
+@using StockProject.Infrastructure.Shared;
 @using StockTrade.Application.Interfaces;
+@using StockTrade.Application.Interfaces.API;
+
 @inject IWatchListRepository _watchListRepo;
+@inject IWatchListAPIRepository _watchListApi;
 @model Gihun_StockTrade_Portpolio.Pages.WatchList.IndexModel
 
 @{
     var dataSource = _watchListRepo.SymbolList();
-    var UserEmail = Request.Cookies["Email"];
-    var test = UserEmail;
+    var userEmail = Request.Cookies["Email"];
+    var userId = _watchListRepo.GetUserIdByEmail( userEmail ); 
+    var wishList = _watchListRepo.GetUserWishList( userId );
 }
 
 <head>
@@ -46,7 +51,7 @@
                     <th class="sticky-col first-col">Icon</th>
                     <th class="sticky-col second-col">No.</th>
                     <th class="sticky-col third-col">Symbol</th>
-                    <th class="sticky-col fourth-col">Name</th>
+                    <th class="sticky-col fourth-col">Company Name</th>
                     <!-- Movement는 나중에 시간나면 해보자 -->
                     @*<th scope="col">Movement</th>*@
                     <th>Price</th>
@@ -72,36 +77,52 @@
                     <th>Exchange</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td class="sticky-col first-col">opt</td>
-                    <td class="sticky-col second-col">1</td>
-                    <td class="sticky-col third-col">TSLA</td>
-                    <td class="sticky-col fourth-col">Tesla Inc</td>
-                    @*<td>Movement</td>*@
-                    <td>Price</td>
-                    <td>Price</td>
-                    <td>Price</td>
-                    <td>Price</td>
-                    <td>Price</td>
-                    <td>Price</td>
-                    <td>Price</td>
-                    <td>Price</td>
-                    <td>Price</td>
-                    <td>Price</td>
-                    <td>Price</td>
-                    <td>Price</td>
-                    <td>Price</td>
-                    <td>Price</td>
-                    <td>Price</td>
-                    <td>Price</td>
-                    <td>Price</td>
-                    <td>Price</td>
-                    <td>Price</td>
-                    <td>Price</td>
-                    <td>Price</td>
-                </tr>
-            </tbody>
+            @foreach (var item in wishList)
+            {
+                <tbody>
+                    @{
+                        var wishInfo = _watchListApi.OnPostGetUserWishSymbolInfo(item).Result;
+                        // ToDo:
+                        // wishInfo로 정보출력하는거 해야함 @wishInfo.blabla 이런식으로 위에꺼 헤드 참고해서
+                    }
+                    <tr>
+                        @if (wishList == null)
+                        {
+                            <td> <p> You haven't any wishlist. </p> </td>
+                        }
+                        else
+                        {
+                            <td class="sticky-col first-col">opt</td>
+                            <td class="sticky-col second-col">1</td>
+                            <td class="sticky-col third-col">@item.ToString()</td>
+                            <td class="sticky-col fourth-col">@wishInfo.summaryDetail.</td>
+                            @*<td>Movement</td>*@
+                            <td>Price</td>
+                            <td>Price</td>
+                            <td>Price</td>
+                            <td>Price</td>
+                            <td>Price</td>
+                            <td>Price</td>
+                            <td>Price</td>
+                            <td>Price</td>
+                            <td>Price</td>
+                            <td>Price</td>
+                            <td>Price</td>
+                            <td>Price</td>
+                            <td>Price</td>
+                            <td>Price</td>
+                            <td>Price</td>
+                            <td>Price</td>
+                            <td>Price</td>
+                            <td>Price</td>
+                            <td>Price</td>
+                            <td>Price</td>
+                            <td>Price</td>
+                        }
+                    </tr>
+                </tbody>
+            }
+            <br/>
         </table>
     </div>
 </div>

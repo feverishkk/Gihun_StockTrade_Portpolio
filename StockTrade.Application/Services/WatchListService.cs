@@ -56,9 +56,9 @@ namespace StockTrade.Application.Services
 
         public string GetUserIdByEmail( string email )
         {
-            using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            using (SqlConnection connection = new SqlConnection( _configuration.GetConnectionString("DefaultConnection")) )
             {
-                var cmd = new SqlCommand("usp_GetUserIdByEmail", connection);
+                var cmd = new SqlCommand( "usp_GetUserIdByEmail", connection );
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue( "@Email", email );
@@ -70,5 +70,34 @@ namespace StockTrade.Application.Services
                 return value;
             }
         }
+
+        public List<string> GetUserWishList( string userId )
+        {
+            using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            {
+                var cmd = new SqlCommand("usp_GetUserWishList", connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue( "@UserId", userId );
+
+                connection.Open();
+
+                List<string> result = new List<string>();
+
+                using(var reader =  cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        result.Add(reader.GetString(0));
+                    }
+                }
+               
+                return result;
+            }
+        }
+
+
+
+
     }
 }
