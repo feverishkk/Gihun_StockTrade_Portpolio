@@ -35,7 +35,6 @@ namespace Gihun_StockTrade_Portpolio.Pages.ApplicationUser
                     };
 
                     Response.Cookies.Append( "Email",  model.Email,  cookie );
-                    Response.Cookies.Append( "UserId", model.UserId, cookie );
 
                     return RedirectToPage( "/Index" );
                 }

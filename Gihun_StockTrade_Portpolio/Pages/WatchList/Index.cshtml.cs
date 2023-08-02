@@ -1,20 +1,22 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using StockProject.Infrastructure.Shared;
+using StockProject.Application.ViewModel.API.StocksViewModel.CompanyBrief;
 using StockTrade.Application.Interfaces;
-using StockTrade.Application.ViewModel.API.WatchList;
-using System.Net.Http.Headers;
-using System.Text.Json;
+using StockTrade.Application.Interfaces.API;
 
 namespace Gihun_StockTrade_Portpolio.Pages.WatchList
 {
     public class IndexModel : PageModel
     {
         private readonly IWatchListRepository _watchListRepo;
+        private readonly IStocksRepository _stocksRepo;
 
-        public IndexModel( IWatchListRepository watchListRepo )
+        public CompanyBrief companyBrief { get; set; }
+
+        public IndexModel( IWatchListRepository watchListRepo, IStocksRepository stocksRepo )
         {
             _watchListRepo = watchListRepo;
+            _stocksRepo = stocksRepo;
         }
 
         public void OnGet()
@@ -47,13 +49,19 @@ namespace Gihun_StockTrade_Portpolio.Pages.WatchList
                 return RedirectToPage("Cannot_Find");
             }
 
-            // symbol도 null이 아니고 userId도 null이 아닐 때!
-            // DB에 저장한다.
-            var result = _watchListRepo.AddSymbol( userId, symbol );
-
-            if( Convert.ToInt32( result.Value ) != 1 )
+            // 모든 조건이 부합한다면
+            // 유저가 null이 아니고 유저Id를 가져왔고 symbol이 존재한다면
+            // DB에 저장하는 로직
+            if( user != null && user != string.Empty && userId != null && userId != string.Empty && existCheck == true )
             {
-                return RedirectToPage("CustomPage/500_ServerError");
+                // symbol도 null이 아니고 userId도 null이 아니고 티커가 존재한다면!
+                // DB에 저장한다.
+                var result = _watchListRepo.AddSymbol(userId, symbol);
+
+                if (Convert.ToInt32(result.Value) != 1)
+                {
+                    return RedirectToPage("CustomPage/500_ServerError");
+                }
             }
 
             return RedirectToPage("Index");
@@ -75,7 +83,24 @@ namespace Gihun_StockTrade_Portpolio.Pages.WatchList
             return RedirectToPage("Index");
         }
 
-        
+        public async Task<ActionResult> OnPostCompanyBrief( string clickedSymbol = "TSLA" )
+        {
+            if( clickedSymbol ==  string.Empty || clickedSymbol == null )
+            {
+                return RedirectToPage("CustomPage/404_NotFound");
+            }
+
+            var info = await _stocksRepo.GetCompanyBrief( clickedSymbol );
+
+            if ( info == null )
+            {
+                return null;
+            }
+            this.companyBrief = info;
+            ViewData["companyBrief"] = info;
+
+            return null;
+        }
 
     }
 }

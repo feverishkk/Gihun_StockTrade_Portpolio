@@ -1,10 +1,12 @@
 ﻿@page
+@using StockProject.Application.ViewModel.API.StocksViewModel.CompanyBrief;
 @using StockProject.Infrastructure.Shared;
 @using StockTrade.Application.Interfaces;
 @using StockTrade.Application.Interfaces.API;
 
 @inject IWatchListRepository _watchListRepo;
 @inject IWatchListAPIRepository _watchListApi;
+@inject IStocksRepository _stockRepo;
 @model Gihun_StockTrade_Portpolio.Pages.WatchList.IndexModel
 
 @{
@@ -15,165 +17,187 @@
 }
 
 <head>
-    <link href="http://cdn.syncfusion.com/21.1.35/js/web/flat-azure/ej.web.all.min.css" rel="stylesheet" />
+    <link   href="http://cdn.syncfusion.com/21.1.35/js/web/flat-azure/ej.web.all.min.css" rel="stylesheet" />
     <script src="http://cdn.syncfusion.com/js/assets/external/jquery-1.10.2.min.js"></script>
     <script src="http://cdn.syncfusion.com/21.1.35/js/web/ej.web.all.min.js"></script>
 </head>
 
 
-<div style="margin-bottom:2px; font-weight:700;">
-    <t6> My Watchlist </t6>
-</div>
-
-
-@*<div>
-    @foreach (var item in News)
-    {
-
-        <p> @item.content.finance.stockTickers.ToString() </p>
-        <p> @item.content.title </p>
-        <p> @item.content.pubDate </p>
-        <p> @item.content.thumbnail </p>
-        <br />
-        <br />
-        <br />
-
-    }
-</div>*@
-
-
-<div class="view">
-    <div class="wrappers">
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th class="sticky-col first-col">Icon</th>
-                    <th class="sticky-col second-col">No.</th>
-                    <th class="sticky-col third-col">Symbol</th>
-                    <th class="sticky-col fourth-col">Company Name</th>
-                    <!-- Movement는 나중에 시간나면 해보자 -->
-                    @*<th scope="col">Movement</th>*@
-                    <th>Price</th>
-                    <th>After Hours</th>
-                    <th>Change</th>
-                    <th>% Change</th>
-                    <th>Open</th>
-                    <th>Prev Close</th>
-                    <th>High</th>
-                    <th>Low</th>
-                    <th>Volume</th>
-                    <th>Turnover</th>
-                    <th>Avg Vol(3M)</th>
-                    <th>% Range</th>
-                    <th>52 Wk High</th>
-                    <th>52 Wk Low</th>
-                    <th>Market Cap</th>
-                    <th>P/E (TTM)</th>
-                    <th>P/Dividend</th>
-                    <th>EPS</th>
-                    <th>Div Yield</th>
-                    <th>% Turnover</th>
-                    <th>Exchange</th>
-                </tr>
-            </thead>
-            @foreach (var item in wishList)
-            {
-                <tbody>
-                    @{
-                        var wishInfo = _watchListApi.OnPostGetUserWishSymbolInfo(item).Result;
-                        // ToDo:
-                        // wishInfo로 정보출력하는거 해야함 @wishInfo.blabla 이런식으로 위에꺼 헤드 참고해서
+<div>
+    <div class="for-right">
+        <!-- 유저가 추가한 관심종목 섹션 -->
+        <div style="margin-bottom:2px; font-weight:700;">
+            <t6> My Watchlist </t6>
+        </div>
+        <div class="view ">
+            <div class="wrappers">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="sticky-col first-col">Icon</th>
+                            <th class="sticky-col second-col">No.</th>
+                            <th class="sticky-col third-col">Symbol</th>
+                            <th class="sticky-col fourth-col">Company Name</th>
+                            <!-- Movement는 나중에 시간나면 해보자 -->
+                            @*<th scope="col">Movement</th>*@
+                            <th>Price</th>
+                            <th>After Hours</th>
+                            <th>Change</th>
+                            <th>% Change</th>
+                            <th>Open</th>
+                            <th>Prev Close</th>
+                            <th>High</th>
+                            <th>Low</th>
+                            <th>Volume</th>
+                            <th>Turnover</th>
+                            <th>Avg Vol(3M)</th>
+                            <th>% Range</th>
+                            <th>52 Wk High</th>
+                            <th>52 Wk Low</th>
+                            <th>Market Cap</th>
+                            <th>P/E (TTM)</th>
+                            <th>P/Dividend</th>
+                            <th>EPS</th>
+                            <th>Div Yield</th>
+                            <th>% Turnover</th>
+                            <th>Exchange</th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in wishList)
+                    {
+                        <tbody>
+                            @{
+                                //var symbolInfo = _watchListApi.OnPostGetUserWishSymbolInfo(item).Result;
+                                // ToDo:
+                                // symbolInfo로 정보출력하는거 해야함 @symbolInfo.blabla 이런식으로 위에꺼 헤드 참고해서
+                            }
+                            <tr>
+                                @if (wishList == null)
+                                {
+                                    <td> <p> You haven't any wishlist. </p> </td>
+                                }
+                                else
+                                {
+                                    <form method="post" asp-page="/WatchList/Index" asp-page-handler="CompanyBrief">
+                                        @*<input type="hidden" value="@item.ToString()" name="clickedSymbol" id="clickedSymbol" />*@
+                                        
+                                        <td class="sticky-col first-col">opt</td>
+                                        <td class="sticky-col second-col">1</td>
+                                        <td class="sticky-col third-col">
+                                            <input id="symbol-font" type="submit" value="@item.ToString()" name="clickedSymbol" />
+                                        </td>
+                                        <td class="sticky-col fourth-col"> @*@symbolInfo.quoteType.shortName.ToString()*@ </td>
+                                            @*<td>Movement</td>*@
+                                        <td>Price</td>
+                                        <td>Price</td>
+                                        <td>Price</td>
+                                        <td>Price</td>
+                                        <td>Price</td>
+                                        <td>Price</td>
+                                        <td>Price</td>
+                                        <td>Price</td>
+                                        <td>Price</td>
+                                        <td>Price</td>
+                                        <td>Price</td>
+                                        <td>Price</td>
+                                        <td>Price</td>
+                                        <td>Price</td>
+                                        <td>Price</td>
+                                        <td>Price</td>
+                                        <td>Price</td>
+                                        <td>Price</td>
+                                        <td>Price</td>
+                                        <td>Price</td>
+                                        <td>Price</td>
+                                    </form>
+                                }
+                            </tr>
+                        </tbody>
                     }
-                    <tr>
-                        @if (wishList == null)
-                        {
-                            <td> <p> You haven't any wishlist. </p> </td>
-                        }
-                        else
-                        {
-                            <td class="sticky-col first-col">opt</td>
-                            <td class="sticky-col second-col">1</td>
-                            <td class="sticky-col third-col">@item.ToString()</td>
-                            <td class="sticky-col fourth-col">@wishInfo.summaryDetail.</td>
-                            @*<td>Movement</td>*@
-                            <td>Price</td>
-                            <td>Price</td>
-                            <td>Price</td>
-                            <td>Price</td>
-                            <td>Price</td>
-                            <td>Price</td>
-                            <td>Price</td>
-                            <td>Price</td>
-                            <td>Price</td>
-                            <td>Price</td>
-                            <td>Price</td>
-                            <td>Price</td>
-                            <td>Price</td>
-                            <td>Price</td>
-                            <td>Price</td>
-                            <td>Price</td>
-                            <td>Price</td>
-                            <td>Price</td>
-                            <td>Price</td>
-                            <td>Price</td>
-                            <td>Price</td>
-                        }
-                    </tr>
-                </tbody>
-            }
-            <br/>
-        </table>
-    </div>
-</div>
-
-<h1> test </h1>
-
-<form method="post" asp-page="/WatchList/Index" asp-page-handler="AddSymbol">
-    <ejs-autocomplete id="symbol" dataSource=@dataSource filter-type="Contains" show-popup-button="true" enable-auto-fill="true" watermark-text="Select value">
-        <e-autocomplete-fields id="symbol" Value=Symbol value=Symbol key="Symbol"></e-autocomplete-fields>
-    </ejs-autocomplete>
-</form>
-
-<div class="row">
-    <div tabindex="0" class="e-card card-section" id="basic">
-
-        <div class="item">
-            <div class="e-card-header">
-                <div class="e-card-header-caption">
-                    <div class="e-card-header-title"> Corporate Actions </div>
-                </div>
-            </div>
-            <div class="e-card-content">
-                Advanced UWP: Communicating with Windows 10 and Other Apps, the second in a five-part series written by Succinctly series
-                author Matteo Pagani. To download the complete white paper, and other papers in the series, visit
-                the White Paper section of Syncfusion’s Technology Resource Portal.
+                </table>
             </div>
         </div>
 
-    </div>
 
-    <div tabindex="0" class="e-card card-section" id="basic">
+       
 
-        <div class="item">
-            <div class="e-card-header">
-                <div class="e-card-header-caption">
-                    <div class="e-card-header-title"> News </div>
-                </div>
-            </div>
-            <div class="e-card-content">
-                Advanced UWP: Communicating with Windows 10 and Other Apps, the second in a five-part series written by Succinctly series
-                author Matteo Pagani. To download the complete white paper, and other papers in the series, visit
-                the White Paper section of Syncfusion’s Technology Resource Portal.
-            </div>
+        <!-- 티커 추가 하는 섹션 -->
+        <div>
+            <form method="post" asp-page="/WatchList/Index" asp-page-handler="AddSymbol">
+                <ejs-autocomplete id="symbol" dataSource=@dataSource filter-type="Contains" placeholder="Add Symbol/Ticker" show-popup-button="true" enable-auto-fill="true" watermark-text="Select value">
+                    <e-autocomplete-fields id="symbol" Value=Symbol value=Symbol key="Symbol"></e-autocomplete-fields>
+                </ejs-autocomplete>
+            </form>
         </div>
 
+        <!-- 뉴스 섹션 -->
+        <div class="row">
+            <div tabindex="0" class="e-card card-section" id="basic">
+
+                <div class="item">
+                    <div class="e-card-header">
+                        <div class="e-card-header-caption">
+                            <div class="e-card-header-title"> Corporate Actions </div>
+                        </div>
+                    </div>
+                    <div class="e-card-content">
+                        Advanced UWP: Communicating with Windows 10 and Other Apps, the second in a five-part series written by Succinctly series
+                        author Matteo Pagani. To download the complete white paper, and other papers in the series, visit
+                        the White Paper section of Syncfusion’s Technology Resource Portal.
+                    </div>
+                </div>
+
+            </div>
+
+            <div tabindex="0" class="e-card card-section" id="basic">
+
+                <div class="item">
+                    <div class="e-card-header">
+                        <div class="e-card-header-caption">
+                            <div class="e-card-header-title"> News </div>
+                        </div>
+                    </div>
+                    <div class="e-card-content">
+                        Advanced UWP: Communicating with Windows 10 and Other Apps, the second in a five-part series written by Succinctly series
+                        author Matteo Pagani. To download the complete white paper, and other papers in the series, visit
+                        the White Paper section of Syncfusion’s Technology Resource Portal.
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
+
+    <partial name="_KeyStatistics" model="Model.companyBrief" />
+
+    <!-- 오른쪽 사이드 바 -->
+    @*@{
+        Html.Partial("_KeyStatistics", Model.companyBrief);
+    }*@
+
 </div>
 
-
-
-
+<script>
+    //$('input[type=hidden]').val()
+    //console.log(document.getElementById("clickedSymbol").value);
+    //let xhr = new XMLHttpRequest();
+    //let url = 'https://localhost:44367/Shared/_KeyStatistics';
+    //xhr.open("GET", url, true);
+    //xhr.onreadystatechange = function() {
+    //    if(this.readyState  == 4 && this.status == 200) {
+    //        console.log(this.responseText);
+    //    }
+    //}
+    //xhr.send();
+    //var button = document.getElementById("link");
+    //button.addEventListener("click", function(e) {
+    //   $.ajax({
+    //       tpye: "GET",
+    //        url: "https://localhost:44367/Shared/_KeyStatistics",
+    //        data: 
+    //   })
+    //})
+</script>
 
 <style>
 
@@ -186,8 +210,6 @@
         width: 100%;
         padding: 10px 15px;
     }
-
-
 
     .card-section {
         width: 50%;
@@ -254,5 +276,33 @@
         height: 100%;
         width: 100%;
     }
+
+    .fixed-right {
+        position: fixed;
+        right: 500px;
+    }
+
+    .for-right {
+        padding-right: 350px;
+        margin-left: 10px;
+    }
+
+    #wrapper-for-right {
+        padding-right: 250px;
+    }
+
+    #sidebar-wrapper {
+        width: 370px;
+    }
+
+    /*#symbol-font {
+        background-color: white;
+        position: absolute;
+        border:none;
+        left: 0px;
+        top: 102px;
+        width: 900px;
+        height: 27px;
+    }*/
 
 </style>

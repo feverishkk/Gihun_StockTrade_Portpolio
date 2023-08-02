@@ -1,24 +1,23 @@
-﻿using StockTrade.Application.Interfaces.API;
-using StockTrade.Application.ViewModel.API.WatchList;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
+﻿using StockProject.Application.ViewModel.API.StocksViewModel.CompanyBrief;
+using StockTrade.Application.Interfaces.API;
 
 namespace StockTrade.Application.Services.API
 {
-    public class WatchListAPIService : IWatchListAPIRepository
+    public class StocksService : IStocksRepository
     {
 
-        public async Task<WatchList> OnPostGetUserWishSymbolInfo(string wishSymbol)
+        public StocksService()
+        {
+            
+        }
+
+        public async Task<CompanyBrief> GetCompanyBrief( string symbol )
         {
             var client = new HttpClient();
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri($"https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-summary?symbol={wishSymbol}&region=US"),
+                RequestUri = new Uri($"https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-summary?symbol={ symbol }&region=US"),
                 Headers =
                 {
                     { "X-RapidAPI-Key", "c1b44bd912msh2f07e988adef1aap16ae60jsnac03fd75789e" },
@@ -29,11 +28,24 @@ namespace StockTrade.Application.Services.API
             {
                 response.EnsureSuccessStatusCode();
                 var data = await response.Content.ReadAsStringAsync();
-                WatchList result = JsonSerializer.Deserialize<WatchList>(data);
+
+                var result = Newtonsoft.Json.JsonConvert.DeserializeObject<CompanyBrief>(data);
+
+                if (result == null)
+                {
+                    return null;
+                }
 
                 return result;
+
             }
         }
+
+
+
+
+
+
 
 
     }

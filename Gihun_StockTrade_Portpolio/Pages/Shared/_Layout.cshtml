@@ -134,7 +134,7 @@
     </ejs-sidebar>
 
 
-    <div class="container">
+    <div>
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -223,16 +223,6 @@
 
     #dockSidebar .settings::before {
         content: '\e10b';
-    }
-
-    .e-sidebar .expand::before,
-    .e-sidebar.e-right.e-open .expand::before {
-        content: '\e10f';
-    }
-
-    .e-sidebar.e-open .expand::before,
-    .e-sidebar.e-right .expand::before {
-        content: '\e10e';
     }
 
     /* end of dockbar icon Style */

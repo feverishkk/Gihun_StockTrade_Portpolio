@@ -23,3 +23,27 @@
     </e-splitter-panes>
 </ejs-splitter>
 
+<div id="drag-element"><p>Draggable Element </p></div>
+
+<script>
+    var dragElement = document.getElementById('drag-element');
+    var draggable = new ej.base.Draggable(dragElement, { clone: false });
+</script>
+
+<style>
+    #drag-element {
+        height: 100px;
+        width: 150px;
+        border: 1px solid #cecece;
+        cursor: move;
+        user-select: none;
+        color: #6a77a7;
+        touch-action: none;
+    }
+
+    p {
+        padding-top: 20px;
+        text-align: center;
+        margin: 14px 0px 14px 0px;
+    }
+</style>

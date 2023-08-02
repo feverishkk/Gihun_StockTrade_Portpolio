@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
 
-namespace StockTrade.Application.ViewModel.API.WatchList
+namespace StockProject.Application.ViewModel.API.StocksViewModel.CompanyBrief
 {
     // Root myDeserializedClass = JsonSerializer.Deserialize<Root>(myJsonResponse);
     public class _52WeekChange
@@ -38,7 +32,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class Ask
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -47,7 +41,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class AskSize
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -59,7 +53,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class AverageDailyVolume10Day
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -71,7 +65,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class AverageDailyVolume3Month
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -83,7 +77,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class AverageVolume
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -95,7 +89,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class AverageVolume10days
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -115,7 +109,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class Bid
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -124,7 +118,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class BidSize
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -145,7 +139,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class BuyInfoCount
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -157,7 +151,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class BuyInfoShares
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -178,7 +172,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class CalendarEvents
     {
         [JsonPropertyName("maxAge")]
-        public Int64 maxAge { get; set; }
+        public double maxAge { get; set; }
 
         [JsonPropertyName("earnings")]
         public Earnings earnings { get; set; }
@@ -219,7 +213,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class DateShortInterest
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -348,8 +342,8 @@ namespace StockTrade.Application.ViewModel.API.WatchList
         [JsonPropertyName("enterpriseValue")]
         public EnterpriseValue enterpriseValue { get; set; }
 
-        [JsonPropertyName("priceHInt64")]
-        public PriceHInt64 priceHInt64 { get; set; }
+        [JsonPropertyName("priceHint")]
+        public PriceHint priceHint { get; set; }
 
         [JsonPropertyName("threeYearAverageReturn")]
         public ThreeYearAverageReturn threeYearAverageReturn { get; set; }
@@ -388,7 +382,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
         public ForwardPE forwardPE { get; set; }
 
         [JsonPropertyName("maxAge")]
-        public Int64 maxAge { get; set; }
+        public double maxAge { get; set; }
 
         [JsonPropertyName("lastCapGain")]
         public LastCapGain lastCapGain { get; set; }
@@ -428,7 +422,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class Earnings
     {
         [JsonPropertyName("maxAge")]
-        public Int64 maxAge { get; set; }
+        public double maxAge { get; set; }
 
         [JsonPropertyName("earningsChart")]
         public EarningsChart earningsChart { get; set; }
@@ -491,7 +485,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
         public string currentQuarterEstimateDate { get; set; }
 
         [JsonPropertyName("currentQuarterEstimateYear")]
-        public Int64 currentQuarterEstimateYear { get; set; }
+        public double currentQuarterEstimateYear { get; set; }
 
         [JsonPropertyName("earningsDate")]
         public List<EarningsDate> earningsDate { get; set; }
@@ -500,7 +494,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class EarningsDate
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -539,7 +533,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class EbitdaMargins
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -586,7 +580,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
         public bool controversialWeapons { get; set; }
 
         [JsonPropertyName("ratingMonth")]
-        public Int64 ratingMonth { get; set; }
+        public double ratingMonth { get; set; }
 
         [JsonPropertyName("gambling")]
         public bool gambling { get; set; }
@@ -616,7 +610,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
         public PeerGovernancePerformance peerGovernancePerformance { get; set; }
 
         [JsonPropertyName("peerCount")]
-        public Int64 peerCount { get; set; }
+        public double peerCount { get; set; }
 
         [JsonPropertyName("relatedControversy")]
         public List<string> relatedControversy { get; set; }
@@ -640,7 +634,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
         public TotalEsg totalEsg { get; set; }
 
         [JsonPropertyName("highestControversy")]
-        public Int64 highestControversy { get; set; }
+        public double highestControversy { get; set; }
 
         [JsonPropertyName("esgPerformance")]
         public string esgPerformance { get; set; }
@@ -658,10 +652,10 @@ namespace StockTrade.Application.ViewModel.API.WatchList
         public bool adult { get; set; }
 
         [JsonPropertyName("ratingYear")]
-        public Int64 ratingYear { get; set; }
+        public double ratingYear { get; set; }
 
         [JsonPropertyName("maxAge")]
-        public Int64 maxAge { get; set; }
+        public double maxAge { get; set; }
 
         [JsonPropertyName("percentile")]
         public Percentile percentile { get; set; }
@@ -810,7 +804,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
         public string financialCurrency { get; set; }
 
         [JsonPropertyName("maxAge")]
-        public Int64 maxAge { get; set; }
+        public double maxAge { get; set; }
 
         [JsonPropertyName("revenuePerShare")]
         public RevenuePerShare revenuePerShare { get; set; }
@@ -837,7 +831,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
         public string code { get; set; }
 
         [JsonPropertyName("maxAge")]
-        public Int64 maxAge { get; set; }
+        public double maxAge { get; set; }
     }
 
     public class FiveYearAverageReturn
@@ -881,7 +875,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class FundOwnership
     {
         [JsonPropertyName("maxAge")]
-        public Int64 maxAge { get; set; }
+        public double maxAge { get; set; }
 
         [JsonPropertyName("ownershipList")]
         public List<OwnershipList> ownershipList { get; set; }
@@ -899,7 +893,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class GrossMargins
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -938,7 +932,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class History
     {
         [JsonPropertyName("epochGradeDate")]
-        public Int64 epochGradeDate { get; set; }
+        public double epochGradeDate { get; set; }
 
         [JsonPropertyName("firm")]
         public string firm { get; set; }
@@ -956,7 +950,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class Holder
     {
         [JsonPropertyName("maxAge")]
-        public Int64 maxAge { get; set; }
+        public double maxAge { get; set; }
 
         [JsonPropertyName("name")]
         public string name { get; set; }
@@ -989,7 +983,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class ImpliedSharesOutstanding
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public object fmt { get; set; }
@@ -1004,7 +998,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
         public List<Holder> holders { get; set; }
 
         [JsonPropertyName("maxAge")]
-        public Int64 maxAge { get; set; }
+        public double maxAge { get; set; }
     }
 
     public class InsidersPercentHeld
@@ -1022,13 +1016,13 @@ namespace StockTrade.Application.ViewModel.API.WatchList
         public List<Transaction> transactions { get; set; }
 
         [JsonPropertyName("maxAge")]
-        public Int64 maxAge { get; set; }
+        public double maxAge { get; set; }
     }
 
     public class InstitutionOwnership
     {
         [JsonPropertyName("maxAge")]
-        public Int64 maxAge { get; set; }
+        public double maxAge { get; set; }
 
         [JsonPropertyName("ownershipList")]
         public List<OwnershipList> ownershipList { get; set; }
@@ -1037,7 +1031,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class InstitutionsCount
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -1079,7 +1073,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class LastFiscalYearEnd
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -1088,7 +1082,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class LastSplitDate
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -1097,7 +1091,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class LatestTransDate
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -1109,13 +1103,13 @@ namespace StockTrade.Application.ViewModel.API.WatchList
         public List<object> holders { get; set; }
 
         [JsonPropertyName("maxAge")]
-        public Int64 maxAge { get; set; }
+        public double maxAge { get; set; }
     }
 
     public class MajorHoldersBreakdown
     {
         [JsonPropertyName("maxAge")]
-        public Int64 maxAge { get; set; }
+        public double maxAge { get; set; }
 
         [JsonPropertyName("insidersPercentHeld")]
         public InsidersPercentHeld insidersPercentHeld { get; set; }
@@ -1157,7 +1151,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class MostRecentQuarter
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -1174,7 +1168,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class NetInfoCount
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -1186,7 +1180,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class NetInfoShares
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -1231,7 +1225,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
         public SellInfoShares sellInfoShares { get; set; }
 
         [JsonPropertyName("maxAge")]
-        public Int64 maxAge { get; set; }
+        public double maxAge { get; set; }
 
         [JsonPropertyName("buyInfoCount")]
         public BuyInfoCount buyInfoCount { get; set; }
@@ -1243,7 +1237,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class NextFiscalYearEnd
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -1252,7 +1246,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class NumberOfAnalystOpinions
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -1281,7 +1275,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class OperatingMargins
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -1290,7 +1284,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class OwnershipList
     {
         [JsonPropertyName("maxAge")]
-        public Int64 maxAge { get; set; }
+        public double maxAge { get; set; }
 
         [JsonPropertyName("reportDate")]
         public ReportDate reportDate { get; set; }
@@ -1323,13 +1317,13 @@ namespace StockTrade.Application.ViewModel.API.WatchList
         public string longTermTrend { get; set; }
 
         [JsonPropertyName("maxAge")]
-        public Int64 maxAge { get; set; }
+        public double maxAge { get; set; }
     }
 
     public class PayoutRatio
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -1392,13 +1386,13 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class PeerHighestControversyPerformance
     {
         [JsonPropertyName("min")]
-        public Int64 min { get; set; }
+        public double min { get; set; }
 
         [JsonPropertyName("avg")]
         public double avg { get; set; }
 
         [JsonPropertyName("max")]
-        public Int64 max { get; set; }
+        public double max { get; set; }
     }
 
     public class PeerSocialPerformance
@@ -1434,7 +1428,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class Position
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -1446,7 +1440,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class PositionDirect
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -1458,7 +1452,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class PositionDirectDate
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -1467,7 +1461,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class PositionIndirect
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -1479,7 +1473,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class PositionIndirectDate
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -1514,29 +1508,10 @@ namespace StockTrade.Application.ViewModel.API.WatchList
 
     public class PreMarketChange
     {
-        [JsonPropertyName("raw")]
-        public double raw { get; set; }
-
-        [JsonPropertyName("fmt")]
-        public string fmt { get; set; }
-    }
-
-    public class PreMarketChangePercent
-    {
-        [JsonPropertyName("raw")]
-        public double raw { get; set; }
-
-        [JsonPropertyName("fmt")]
-        public string fmt { get; set; }
     }
 
     public class PreMarketPrice
     {
-        [JsonPropertyName("raw")]
-        public double raw { get; set; }
-
-        [JsonPropertyName("fmt")]
-        public string fmt { get; set; }
     }
 
     public class PreviousClose
@@ -1563,7 +1538,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
         public string exchange { get; set; }
 
         [JsonPropertyName("regularMarketTime")]
-        public Int64 regularMarketTime { get; set; }
+        public double regularMarketTime { get; set; }
 
         [JsonPropertyName("volume24Hr")]
         public Volume24Hr volume24Hr { get; set; }
@@ -1590,16 +1565,13 @@ namespace StockTrade.Application.ViewModel.API.WatchList
         public RegularMarketPreviousClose regularMarketPreviousClose { get; set; }
 
         [JsonPropertyName("postMarketTime")]
-        public Int64 postMarketTime { get; set; }
+        public double postMarketTime { get; set; }
 
         [JsonPropertyName("preMarketPrice")]
         public PreMarketPrice preMarketPrice { get; set; }
 
-        [JsonPropertyName("preMarketTime")]
-        public Int64 preMarketTime { get; set; }
-
         [JsonPropertyName("exchangeDataDelayedBy")]
-        public Int64 exchangeDataDelayedBy { get; set; }
+        public double exchangeDataDelayedBy { get; set; }
 
         [JsonPropertyName("toCurrency")]
         public object toCurrency { get; set; }
@@ -1622,8 +1594,8 @@ namespace StockTrade.Application.ViewModel.API.WatchList
         [JsonPropertyName("regularMarketDayLow")]
         public RegularMarketDayLow regularMarketDayLow { get; set; }
 
-        [JsonPropertyName("priceHInt64")]
-        public PriceHInt64 priceHInt64 { get; set; }
+        [JsonPropertyName("priceHint")]
+        public PriceHint priceHint { get; set; }
 
         [JsonPropertyName("currency")]
         public string currency { get; set; }
@@ -1655,9 +1627,6 @@ namespace StockTrade.Application.ViewModel.API.WatchList
         [JsonPropertyName("quoteType")]
         public string quoteType { get; set; }
 
-        [JsonPropertyName("preMarketChangePercent")]
-        public PreMarketChangePercent preMarketChangePercent { get; set; }
-
         [JsonPropertyName("volumeAllCurrencies")]
         public VolumeAllCurrencies volumeAllCurrencies { get; set; }
 
@@ -1677,7 +1646,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
         public string preMarketSource { get; set; }
 
         [JsonPropertyName("maxAge")]
-        public Int64 maxAge { get; set; }
+        public double maxAge { get; set; }
 
         [JsonPropertyName("fromCurrency")]
         public object fromCurrency { get; set; }
@@ -1686,10 +1655,10 @@ namespace StockTrade.Application.ViewModel.API.WatchList
         public RegularMarketChangePercent regularMarketChangePercent { get; set; }
     }
 
-    public class PriceHInt64
+    public class PriceHint
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -1714,7 +1683,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class ProfitMargins
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -1793,7 +1762,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
         public List<Trend> trend { get; set; }
 
         [JsonPropertyName("maxAge")]
-        public Int64 maxAge { get; set; }
+        public double maxAge { get; set; }
     }
 
     public class RegularMarketChange
@@ -1862,7 +1831,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class RegularMarketVolume
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -1874,7 +1843,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class ReportDate
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -1953,7 +1922,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     {
     }
 
-    public class Summary
+    public class CompanyBrief
     {
         [JsonPropertyName("defaultKeyStatistics")]
         public DefaultKeyStatistics defaultKeyStatistics { get; set; }
@@ -2034,7 +2003,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class SellInfoCount
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -2046,7 +2015,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class SellInfoShares
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -2058,7 +2027,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class Shares
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -2091,7 +2060,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class SharesShort
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -2103,7 +2072,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class SharesShortPreviousMonthDate
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -2112,7 +2081,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class SharesShortPriorMonth
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -2151,7 +2120,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class StartDate
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -2238,8 +2207,8 @@ namespace StockTrade.Application.ViewModel.API.WatchList
         [JsonPropertyName("regularMarketDayLow")]
         public RegularMarketDayLow regularMarketDayLow { get; set; }
 
-        [JsonPropertyName("priceHInt64")]
-        public PriceHInt64 priceHInt64 { get; set; }
+        [JsonPropertyName("priceHint")]
+        public PriceHint priceHint { get; set; }
 
         [JsonPropertyName("currency")]
         public string currency { get; set; }
@@ -2296,7 +2265,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
         public ForwardPE forwardPE { get; set; }
 
         [JsonPropertyName("maxAge")]
-        public Int64 maxAge { get; set; }
+        public double maxAge { get; set; }
 
         [JsonPropertyName("fromCurrency")]
         public object fromCurrency { get; set; }
@@ -2338,7 +2307,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
         public string sector { get; set; }
 
         [JsonPropertyName("fullTimeEmployees")]
-        public Int64 fullTimeEmployees { get; set; }
+        public double fullTimeEmployees { get; set; }
 
         [JsonPropertyName("longBusinessSummary")]
         public string longBusinessSummary { get; set; }
@@ -2362,7 +2331,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
         public string website { get; set; }
 
         [JsonPropertyName("maxAge")]
-        public Int64 maxAge { get; set; }
+        public double maxAge { get; set; }
 
         [JsonPropertyName("address1")]
         public string address1 { get; set; }
@@ -2439,7 +2408,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class TotalInsiderShares
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -2455,7 +2424,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class TrailingAnnualDividendRate
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -2464,7 +2433,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class TrailingAnnualDividendYield
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -2518,7 +2487,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
         public string filerUrl { get; set; }
 
         [JsonPropertyName("maxAge")]
-        public Int64 maxAge { get; set; }
+        public double maxAge { get; set; }
     }
 
     public class Trend
@@ -2527,19 +2496,19 @@ namespace StockTrade.Application.ViewModel.API.WatchList
         public string period { get; set; }
 
         [JsonPropertyName("strongBuy")]
-        public Int64 strongBuy { get; set; }
+        public double strongBuy { get; set; }
 
         [JsonPropertyName("buy")]
-        public Int64 buy { get; set; }
+        public double buy { get; set; }
 
         [JsonPropertyName("hold")]
-        public Int64 hold { get; set; }
+        public double hold { get; set; }
 
         [JsonPropertyName("sell")]
-        public Int64 sell { get; set; }
+        public double sell { get; set; }
 
         [JsonPropertyName("strongSell")]
-        public Int64 strongSell { get; set; }
+        public double strongSell { get; set; }
     }
 
     public class TwoHundredDayAverage
@@ -2557,7 +2526,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
         public List<History> history { get; set; }
 
         [JsonPropertyName("maxAge")]
-        public Int64 maxAge { get; set; }
+        public double maxAge { get; set; }
     }
 
     public class Value
@@ -2575,7 +2544,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class Volume
     {
         [JsonPropertyName("raw")]
-        public Int64 raw { get; set; }
+        public double raw { get; set; }
 
         [JsonPropertyName("fmt")]
         public string fmt { get; set; }
@@ -2595,7 +2564,7 @@ namespace StockTrade.Application.ViewModel.API.WatchList
     public class Yearly
     {
         [JsonPropertyName("date")]
-        public Int64 date { get; set; }
+        public double date { get; set; }
 
         [JsonPropertyName("revenue")]
         public Revenue revenue { get; set; }

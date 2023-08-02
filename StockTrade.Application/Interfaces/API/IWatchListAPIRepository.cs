@@ -9,7 +9,7 @@ namespace StockTrade.Application.Interfaces.API
 {
     public interface IWatchListAPIRepository
     {
-        Task<Summary> OnPostGetUserWishSymbolInfo(string wishSymbol);
+        Task<WatchList> OnPostGetUserWishSymbolInfo(string wishSymbol);
 
 
 

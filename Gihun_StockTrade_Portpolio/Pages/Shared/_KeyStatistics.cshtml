@@ -1,0 +1,214 @@
+﻿@*@page*@
+@using StockProject.Application.ViewModel.API.StocksViewModel.CompanyBrief;
+
+@model CompanyBrief
+@{
+    
+}
+
+
+@if( Model != null )
+{
+    <div class="position-absolute top-0 end-0">
+        <div id="sidebar-wrapper">
+            <ul>
+                <li>
+                    <div class="card text-center">
+                        <div style="height:10px;">
+                            <p> Position </p> <p> Orders </p>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="card text-center">
+                        <div class="card">
+                            <p> @Model.symbol.ToString() </p>
+                            <p> Pre: @Model.financialData.currentPrice.fmt.ToString() </p>
+                            @*@Model.symbol &nbsp; <p> NASDAQ </p>
+                        @Model.quoteType.shortName*@
+                        </div>
+                        @* <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" >Go somewhere</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                    2 days ago
+                    </div>*@
+                    </div>
+                </li>
+                <li>
+                    <div class="card">
+                        <div style="height:10px;">
+                            <p> Key Statistics </p>
+                        </div>
+                        <div class="card-body key-Stat">
+                            <p> Open </p>
+                            <p> High </p>
+                            <p> Volume </p>
+                            <p> Avg Vol(3 </p>
+                            <p> PrevClose </p>
+                            <p> Low </p>
+                            <p> Div Yield </p>
+                            <p> Ex-Div Date </p>
+                            <p> 52 Wk High </p>
+                            <p> 52 Wk Low </p>
+                            <p> MarketCap </p>
+                            <p> Dividend </p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="card text-center">
+                        <div style="height:10px;">
+                            <p> Quick Chart </p>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="card text-center">
+                        <div style="height:10px;">
+                            <p> Time & Sales </p>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="card text-center">
+                        <div style="height:10px;">
+                            <p> Quick Chart </p>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+}
+else
+{
+    <div class="position-absolute top-0 end-0">
+        <div id="sidebar-wrapper">
+            <ul>
+                <li>
+                    <div class="card text-center">
+                        <div style="height:10px;">
+                            <p> Position </p> <p> Orders </p>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="card text-center">
+                        <div class="card">
+                            <p> You haven't selected any symbol </p>
+                           
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="card">
+                        <div style="height:10px;">
+                            <p> Key Statistics </p>
+                        </div>
+                        <div class="card-body key-Stat">
+                            <p> Open </p>
+                            <p> High </p>
+                            <p> Volume </p>
+                            <p> Avg Vol(3 </p>
+                            <p> PrevClose </p>
+                            <p> Low </p>
+                            <p> Div Yield </p>
+                            <p> Ex-Div Date </p>
+                            <p> 52 Wk High </p>
+                            <p> 52 Wk Low </p>
+                            <p> MarketCap </p>
+                            <p> Dividend </p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="card text-center">
+                        <div style="height:10px;">
+                            <p> Quick Chart </p>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="card text-center">
+                        <div style="height:10px;">
+                            <p> Time & Sales </p>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="card text-center">
+                        <div style="height:10px;">
+                            <p> Quick Chart </p>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+}
+
+
+<style>
+
+    #wrapper-for-right {
+        padding-right: 250px;
+    }
+
+    #sidebar-wrapper {
+        width: 370px;
+    }
+
+    ul {
+        list-style-type: none;
+    }
+
+    .key-Stat{
+        font-size: smaller;
+        margin: 0 !important;
+        text-align:left;
+    }
+
+    .key-Stat p{
+        margin-top: 5px;
+        font-size: smaller;
+    }
+
+
+</style>
