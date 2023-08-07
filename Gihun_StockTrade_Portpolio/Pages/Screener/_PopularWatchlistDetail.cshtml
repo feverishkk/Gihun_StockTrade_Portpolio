@@ -1,0 +1,34 @@
+﻿@using StockTrade.Application.Interfaces.API;
+@using StockTrade.Application.ViewModel.API.Screener.PopularWatchlistDetail;
+@using System.Collections;
+
+@model Result
+
+@{
+}
+
+@if( Model == null )
+{
+    <p> nonono </p>
+}
+else
+{
+    <h6> watch Details </h6>
+    @foreach (var item in Model.portfolios)
+    {
+        @foreach (var pf in item.positions)
+        {
+            @pf.symbol<br />
+            @foreach (var result in @pf.lots)
+            {
+                @result.tradeDate.ToString()
+                <br />
+                @result.purchasePrice.ToString()
+                <br />
+                @result.quantity.ToString()
+                <br />
+            }
+        }
+    }
+}
+

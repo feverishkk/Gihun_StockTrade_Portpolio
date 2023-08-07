@@ -1,0 +1,122 @@
+﻿@page
+@using StockTrade.Application.Interfaces.API;
+@inject IMarketAPIRepository _marketRepo;
+@model Gihun_StockTrade_Portpolio.Pages.Market.IndexModel
+@{
+
+    //var news =  _marketRepo.GetMarketNews().Result.data.main.stream;
+}
+
+
+<div class="card-group" style="margin-left:3px;">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Market Index</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+    </div>
+    &nbsp;
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+    </div>
+    &nbsp;
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">News</h5>
+            @*@{
+                var now = DateTime.UtcNow;
+            }
+            @{
+                foreach (var item in news)
+                {
+                    var pubDate = item.content.pubDate;
+                    var hoursAgo = now - pubDate;
+                    <p>
+                        @hoursAgo.ToString(@"hh")Ago
+                    </p>
+                    @if (item.content?.clickThroughUrl?.url?.ToString() == null)
+                    {
+                        <a href="@item.content?.previewUrl?.ToString()">
+                            @item.content.title.ToString();
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="@item.content?.clickThroughUrl?.url?.ToString()">
+                            @item?.content?.title.ToString()
+                        </a>
+                    }
+                 }
+            }*@
+        </div>
+    </div>
+</div>
+
+<br/>
+
+<div class="card-group" style="margin-left:3px;">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">IPO Centre</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+    </div>
+    &nbsp;
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+    </div>
+</div>
+
+<br />
+
+<div class="card-group" style="margin-left:3px;">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+    </div>
+    &nbsp;
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+    </div>
+    &nbsp;
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+    </div>
+    &nbsp;
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+    </div>
+    &nbsp;
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+    </div>
+</div>

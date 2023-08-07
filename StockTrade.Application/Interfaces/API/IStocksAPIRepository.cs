@@ -2,7 +2,7 @@
 
 namespace StockTrade.Application.Interfaces.API
 {
-    public interface IStocksRepository
+    public interface IStocksAPIRepository
     {
         Task<CompanyBrief> GetCompanyBrief( string symbol );
     }

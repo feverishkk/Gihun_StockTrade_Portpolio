@@ -3,10 +3,10 @@ using StockTrade.Application.Interfaces.API;
 
 namespace StockTrade.Application.Services.API
 {
-    public class StocksService : IStocksRepository
+    public class StocksAPIService : IStocksAPIRepository
     {
 
-        public StocksService()
+        public StocksAPIService()
         {
             
         }

@@ -7,10 +7,10 @@ namespace Gihun_StockTrade_Portpolio.Pages.Shared
 {
     public class _KeyStatisticsModel : PageModel
     {
-        private readonly IStocksRepository _stocksRepo;
+        private readonly IStocksAPIRepository _stocksRepo;
         //public CompanyBrief companyBrief { get; set; }
 
-        public _KeyStatisticsModel( IStocksRepository stocksRepo )
+        public _KeyStatisticsModel( IStocksAPIRepository stocksRepo )
         {
             _stocksRepo = stocksRepo;
         }

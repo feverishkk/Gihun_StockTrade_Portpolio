@@ -11,7 +11,9 @@ Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQx
 builder.Services.AddScoped<IApplicationUserRepository, ApplicationUserService>();
 builder.Services.AddScoped<IWatchListRepository, WatchListService>();
 builder.Services.AddScoped<IWatchListAPIRepository, WatchListAPIService>(); 
-builder.Services.AddScoped<IStocksRepository, StocksService>();
+builder.Services.AddScoped<IStocksAPIRepository, StocksAPIService>();
+builder.Services.AddScoped<IMarketAPIRepository, MarketAPIService>();
+builder.Services.AddScoped<IScreenerAPIRepository, ScreenerAPIService>(); 
 
 // Add services to the container.
 builder.Services.AddRazorPages();

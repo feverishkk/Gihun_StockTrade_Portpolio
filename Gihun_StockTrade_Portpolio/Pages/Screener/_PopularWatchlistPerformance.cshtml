@@ -1,0 +1,41 @@
+﻿@using StockTrade.Application.ViewModel.API.ScreenerViewModel.Performance;
+@model Performance
+
+@{
+    
+}
+
+
+@if( Model == null ) 
+{
+    <p>nonono</p>
+}
+else
+{
+    <h6> Performance </h6>
+    var result = Model.finance.result;
+    var pf = result[0].portfolio;
+    var symbols = result[0].symbols.UPS;
+
+    <p> @pf.oneDayPercentChange.ToString() </p>
+    <br />
+    <p> @pf.oneMonthPercentChange.ToString() </p>
+    <br />
+    <p> @pf.oneYearPercentChange.ToString() </p>
+    <br />
+    <p> @pf.lifetimePercentChange.ToString() </p>
+    <br />
+    <p> @pf.originTimestamp.ToString() </p>
+    <br />
+    <p> @pf.updatedAt.ToString() </p>
+    <br />
+    <br />
+
+    <p> @symbols.oneDayPercentChange.ToString() </p>
+    <p> @symbols.oneMonthPercentChange.ToString() </p>
+    <p> @symbols.oneYearPercentChange.ToString() </p>
+    <p> @symbols.lifetimePercentChange.ToString() </p>
+    <p> @symbols.originTimestamp.ToString() </p>
+    <p> @symbols.updatedAt.ToString() </p>
+
+}

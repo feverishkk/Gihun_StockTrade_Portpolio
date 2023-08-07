@@ -6,7 +6,7 @@
 
 @inject IWatchListRepository _watchListRepo;
 @inject IWatchListAPIRepository _watchListApi;
-@inject IStocksRepository _stockRepo;
+@inject IStocksAPIRepository _stockRepo;
 @model Gihun_StockTrade_Portpolio.Pages.WatchList.IndexModel
 
 @{
@@ -118,9 +118,6 @@
             </div>
         </div>
 
-
-       
-
         <!-- 티커 추가 하는 섹션 -->
         <div>
             <form method="post" asp-page="/WatchList/Index" asp-page-handler="AddSymbol">
@@ -168,12 +165,8 @@
         </div>
     </div>
 
-    <partial name="_KeyStatistics" model="Model.companyBrief" />
-
     <!-- 오른쪽 사이드 바 -->
-    @*@{
-        Html.Partial("_KeyStatistics", Model.companyBrief);
-    }*@
+    <partial name="_KeyStatistics" model="Model.companyBrief" />
 
 </div>
 

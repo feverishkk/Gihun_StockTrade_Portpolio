@@ -1,0 +1,68 @@
+﻿@page
+@using StockTrade.Application.Interfaces.API;
+@using StockTrade.Application.ViewModel.API.Screener;
+@inject IScreenerAPIRepository _screenerRepo;
+@model Gihun_StockTrade_Portpolio.Pages.Screener.IndexModel
+
+@{
+    await Model.OnGetAsync();
+
+    var portfolios = ViewData["portfolios"];
+    // ToDo:
+    // market/get-watchlist-performance
+    // market/get-watchlist-detail
+    // 페이지하나 따로 빼서 _KeyStatistics 처럼 만들기!
+}
+
+@*
+<div class="control-wrapper">
+    <div id="default" style='padding-top:75px;'>
+        <ejs-dropdownlist id="popularWatchlists" dataSource="portfolios" placeholder="Select a vegetable" popupHeight="220px">
+            <e-dropdownlist-fields value="pfId"></e-dropdownlist-fields>
+        </ejs-dropdownlist>
+    </div>
+</div>*@
+
+
+<ejs-grid id="Grid" dataSource="@Model.portfolio" allowPaging="true" allowSorting="true">
+    <e-grid-pagesettings pageSize="10"></e-grid-pagesettings>
+    <e-grid-columns >
+        <e-grid-column field="name" headerText="Portfolio Name" textAlign="Right" width="120"></e-grid-column>
+        <e-grid-column field="symbolCount" headerText="Symbol Count" width="150"></e-grid-column>
+        <e-grid-column field="followerCount" headerText="Follower Count" width="130" textAlign="Right"></e-grid-column>
+        <e-grid-column field="dailyPercentGain" headerText="Daily PercentGain" width="120"></e-grid-column>
+    </e-grid-columns>
+</ejs-grid>
+
+<br />
+
+<div>
+    <form method="post" asp-page="/Screener/Index" asp-page-handler="PopularWatchlistDetail">
+        <ejs-autocomplete id="pfId" dataSource=@portfolios filter-type="Contains" placeholder="Select Portfolio" show-popup-button="true" enable-auto-fill="true" watermark-text="Select value">
+            <e-autocomplete-fields id="pfId" Value=pfId value=pfId key="pfId"></e-autocomplete-fields>
+        </ejs-autocomplete>
+    </form>
+</div>
+
+<br />
+
+<partial name="_PopularWatchlistDetail" model="Model.popularWatchlistDetails" />
+<partial name="_PopularWatchlistPerformance" model="Model.Performance" />
+
+<script>
+    //const settings = {
+    //    async: true,
+    //    crossDomain: true,
+    //    url: 'https://apidojo-yahoo-finance-v1.p.rapidapi.com/market/get-popular-watchlists',
+    //    method: 'GET',
+    //    headers: {
+    //        'X-RapidAPI-Key': 'c1b44bd912msh2f07e988adef1aap16ae60jsnac03fd75789e',
+    //        'X-RapidAPI-Host': 'apidojo-yahoo-finance-v1.p.rapidapi.com'
+    //    }
+    //};
+
+    //$.ajax(settings).done(function (response) {
+    //    console.log(response);
+    //});
+</script>
+

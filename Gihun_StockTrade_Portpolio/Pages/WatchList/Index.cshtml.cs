@@ -9,11 +9,11 @@ namespace Gihun_StockTrade_Portpolio.Pages.WatchList
     public class IndexModel : PageModel
     {
         private readonly IWatchListRepository _watchListRepo;
-        private readonly IStocksRepository _stocksRepo;
+        private readonly IStocksAPIRepository _stocksRepo;
 
         public CompanyBrief companyBrief { get; set; }
 
-        public IndexModel( IWatchListRepository watchListRepo, IStocksRepository stocksRepo )
+        public IndexModel( IWatchListRepository watchListRepo, IStocksAPIRepository stocksRepo )
         {
             _watchListRepo = watchListRepo;
             _stocksRepo = stocksRepo;
@@ -83,7 +83,7 @@ namespace Gihun_StockTrade_Portpolio.Pages.WatchList
             return RedirectToPage("Index");
         }
 
-        public async Task<ActionResult> OnPostCompanyBrief( string clickedSymbol = "TSLA" )
+        public async Task<ActionResult> OnPostCompanyBrief( string clickedSymbol )
         {
             if( clickedSymbol ==  string.Empty || clickedSymbol == null )
             {

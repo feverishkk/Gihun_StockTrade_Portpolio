@@ -1,0 +1,13 @@
+﻿@page
+@using StockTrade.Application.Interfaces.API;
+@inject IMarketAPIRepository _marketAPIRepo; 
+@model Gihun_StockTrade_Portpolio.Pages.Market.CryptoModel
+
+@{
+    // Crypto는 Screener/get-symbols-by-predefined에 있다
+    // 여기에서 Grid뷰로 생성하면 될듯?!!
+    var result = _marketAPIRepo.GetCrypto();
+
+}
+
+
