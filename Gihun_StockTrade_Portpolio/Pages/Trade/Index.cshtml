@@ -1,0 +1,50 @@
+﻿@page
+@model Gihun_StockTrade_Portpolio.Pages.Trade.IndexModel
+@using StockTrade.Application.Interfaces;
+@using StockTrade.Application.Interfaces.API;
+@inject IWatchListRepository _watchRepo;
+@inject IWatchListAPIRepository _watchAPIRepo;
+
+@{
+    var userEmail = Request.Cookies["Email"];
+    var userId = _watchRepo.GetUserIdByEmail( userEmail );
+    //var watchlist = _watchRepo.GetUserWishList( userId.ToString() );
+
+}
+
+@*
+@foreach (var item in watchlist)
+{
+    <div tabindex="0" class="e-card" id="basic">
+        <div class="e-card-header">
+            <div class="e-card-header-caption">
+
+                @{
+                    var symbolInfo = _watchAPIRepo.OnPostGetUserWishSymbolInfo(item).Result;
+                }
+
+                <div class="e-card-header-title">@item.ToString()</div>
+                <p>  @symbolInfo.financialData.currentPrice.fmt.ToString() </p>
+                <div class="e-card-content">
+                    <p> After: @symbolInfo.price.postMarketChange.fmt.ToString() </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+}*@
+
+<!--element which is going to render the Card-->
+<form method="post" asp-page="Trade/Index" asp-page-handler="Trade">
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            @Html.HiddenFor(x=>userId, new{ userId = userId })
+            <input type="text" name="symbol" class="form-control mb-2 mr-sm-2" id="symbol" placeholder="Enter Symbol">
+            <input type="number" name="symbolPrice" class="form-control mb-2 mr-sm-2" id="symbolPrice" placeholder="Symbol Price">
+            <input type="number" name="symbolQuantities" class="form-control mb-2 mr-sm-2" id="symbolQuantities" placeholder="Symbol Quantities">
+
+            <button type="submit" name="flag" value="1" class="btn btn-primary">Buy</button>
+            <button type="submit" name="flag" value="2" class="btn btn-primary">Sell</button>
+        </div>
+    </div>
+</form>

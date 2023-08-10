@@ -14,6 +14,7 @@ builder.Services.AddScoped<IWatchListAPIRepository, WatchListAPIService>();
 builder.Services.AddScoped<IStocksAPIRepository, StocksAPIService>();
 builder.Services.AddScoped<IMarketAPIRepository, MarketAPIService>();
 builder.Services.AddScoped<IScreenerAPIRepository, ScreenerAPIService>(); 
+builder.Services.AddScoped<ITradeRepository, TradeService>();   
 
 // Add services to the container.
 builder.Services.AddRazorPages();
