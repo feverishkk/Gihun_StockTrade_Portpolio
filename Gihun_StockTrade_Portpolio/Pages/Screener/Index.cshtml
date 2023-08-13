@@ -14,15 +14,6 @@
     // 페이지하나 따로 빼서 _KeyStatistics 처럼 만들기!
 }
 
-@*
-<div class="control-wrapper">
-    <div id="default" style='padding-top:75px;'>
-        <ejs-dropdownlist id="popularWatchlists" dataSource="portfolios" placeholder="Select a vegetable" popupHeight="220px">
-            <e-dropdownlist-fields value="pfId"></e-dropdownlist-fields>
-        </ejs-dropdownlist>
-    </div>
-</div>*@
-
 
 <ejs-grid id="Grid" dataSource="@Model.portfolio" allowPaging="true" allowSorting="true">
     <e-grid-pagesettings pageSize="10"></e-grid-pagesettings>

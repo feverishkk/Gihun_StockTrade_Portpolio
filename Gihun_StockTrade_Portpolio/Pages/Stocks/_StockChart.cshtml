@@ -1,0 +1,24 @@
+﻿@using StockTrade.Application.ViewModel.API.StocksViewModel.ChartEntities;
+
+
+@model List<StockChartViewModel>
+@{
+    var data = ViewData["test"] as List<StockChartViewModel>;
+    var title = ViewData["StockName"] as string;
+}
+
+@if( Model == null )
+{
+    <p> Select one Symbol if you want to see a chart </p>
+}
+else
+{
+    <ejs-chart id="container" width="60%" title="@title Stock For 1 Year  High&Low&Open&Close Chart">
+        <e-chart-primaryxaxis valueType="Category"></e-chart-primaryxaxis>
+        <e-series-collection>
+            <e-series dataSource=@Model xName="date" high="high" low="low" open="open" close="close"
+                  type="@Syncfusion.EJ2.Charts.ChartSeriesType.HiloOpenClose" bearFillColor="#e56590" bullFillColor="#f8b883" enabletooltip="true" >
+            </e-series>
+        </e-series-collection>
+    </ejs-chart>
+}

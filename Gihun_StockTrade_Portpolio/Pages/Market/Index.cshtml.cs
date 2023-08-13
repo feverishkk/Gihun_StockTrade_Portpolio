@@ -19,7 +19,10 @@ namespace Gihun_StockTrade_Portpolio.Pages.Market
         {
         }
 
-
+        public IActionResult OnGetCrypto()
+        {
+            return RedirectToPage("/Market/Crypto");
+        }
 
 
 

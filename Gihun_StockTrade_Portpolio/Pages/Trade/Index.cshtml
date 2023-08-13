@@ -8,11 +8,11 @@
 @{
     var userEmail = Request.Cookies["Email"];
     var userId = _watchRepo.GetUserIdByEmail( userEmail );
-    //var watchlist = _watchRepo.GetUserWishList( userId.ToString() );
+    var watchlist = _watchRepo.GetUserWishList( userId.ToString() );
 
 }
 
-@*
+
 @foreach (var item in watchlist)
 {
     <div tabindex="0" class="e-card" id="basic">
@@ -30,9 +30,8 @@
                 </div>
             </div>
         </div>
-
     </div>
-}*@
+}
 
 <!--element which is going to render the Card-->
 <form method="post" asp-page="Trade/Index" asp-page-handler="Trade">

@@ -6,8 +6,23 @@
 @{
     // Crypto는 Screener/get-symbols-by-predefined에 있다
     // 여기에서 Grid뷰로 생성하면 될듯?!!
-    var result = _marketAPIRepo.GetCrypto();
+    var result = _marketAPIRepo.GetCrypto().Result.finance.result[0];
 
 }
 
 
+<ejs-grid id="Grid" dataSource="@result">
+    <e-grid-columns>
+        <e-grid-column field="@result.quotes[0].fullExchangeName" headerText="Exchange" textAlign="Right" width="120"></e-grid-column>
+        <e-grid-column field="@result.quotes[0].regularMarketPrice.fmt.ToString()" headerText="Price" width="150"></e-grid-column>
+        <e-grid-column field="@result.quotes[0].regularMarketChangePercent.fmt.ToString()" headerText="% Chnage" width="130" textAlign="Right" format="yMd"></e-grid-column>
+        <e-grid-column field="@result.quotes[0].regularMarketChange.fmt.ToString()" headerText="Change" width="120"></e-grid-column>
+        <e-grid-column field="@result.quotes[0].regularMarketOpen.fmt.ToString()" headerText="Open" width="120"></e-grid-column>
+        <e-grid-column field="@result.quotes[0].regularMarketPreviousClose.fmt.ToString()" headerText="Prev Close" width="120"></e-grid-column>
+        <e-grid-column field="@result.quotes[0].regularMarketDayHigh.fmt.ToString()" headerText="High" width="120"></e-grid-column>
+        <e-grid-column field="@result.quotes[0].regularMarketDayLow.fmt.ToString()" headerText="Low" width="120"></e-grid-column>
+        <e-grid-column field="@result.quotes[0].fiftyTwoWeekHigh.fmt.ToString()" headerText="52Wk High" width="120"></e-grid-column>
+        <e-grid-column field="@result.quotes[0].fiftyTwoWeekLow.fmt[0].ToString()" headerText="52Wk Low" width="120"></e-grid-column>
+        <e-grid-column field="@result.quotes[0].regularMarketVolume.fmt.ToString()" headerText="Volume" width="120"></e-grid-column>
+    </e-grid-columns>
+</ejs-grid>

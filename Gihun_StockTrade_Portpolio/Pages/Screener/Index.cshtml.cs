@@ -61,11 +61,6 @@ namespace Gihun_StockTrade_Portpolio.Pages.Screener
         {
             var performance = await _screenerAPIRepo.GetPopularWatchlistPerformance( pfId );
 
-            //Performance model = new Performance();  
-
-            //model.finance.result[0].portfolio = performance.finance.result[0].portfolio;
-            //model.finance.result[0].symbols = performance.finance.result[0].symbols;
-
             Performance = performance;
         }
 

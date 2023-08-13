@@ -1,4 +1,43 @@
 ﻿@page
+@using StockTrade.Application.Interfaces.API;
+@using StockTrade.Application.Interfaces;
+@using StockTrade.Application.ViewModel.API.StocksViewModel.StockChart;
+@inject IWatchListRepository _watchListRepo;
+@inject IWatchListAPIRepository _watchAPIRepo;
 @model Gihun_StockTrade_Portpolio.Pages.Stocks.IndexModel
+
 @{
+    var userEmail = Request.Cookies["Email"];
+    var userId = _watchListRepo.GetUserIdByEmail( userEmail );
+    var watchlist = _watchListRepo.GetUserWishList( userId );
 }
+
+
+@foreach (var item in watchlist)
+{
+    <div tabindex="0" class="e-card" id="basic">
+        <div class="e-card-header">
+            <div class="e-card-header-caption">
+
+                @{
+                    var symbolInfo = _watchAPIRepo.OnPostGetUserWishSymbolInfo(item).Result;
+                }
+
+                <div class="e-card-header-title">
+                    <form method="post" asp-page="/Stocks/Index" asp-page-handler="GetStockChart" id="symbol" name="symbol">
+                        <button type="submit" value="@item" id="symbol" name="symbol">
+                            @item.ToString()
+                        </button>
+                    </form>
+                </div>
+                <p>  @symbolInfo.financialData.currentPrice.fmt.ToString() </p>
+                <div class="e-card-content">
+                    <p> After: @symbolInfo.price.postMarketChange.fmt.ToString() </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+}
+
+@Html.Partial("_StockChart.cshtml", Model.StockChartResult )

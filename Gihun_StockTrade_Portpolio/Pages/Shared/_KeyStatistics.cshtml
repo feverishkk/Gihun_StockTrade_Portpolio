@@ -27,17 +27,17 @@
                         <div class="card">
                             <p> @Model.symbol.ToString() </p>
                             <p> Pre: @Model.financialData.currentPrice.fmt.ToString() </p>
-                            @*@Model.symbol &nbsp; <p> NASDAQ </p>
-                        @Model.quoteType.shortName*@
+                            @Model.symbol &nbsp; <p> NASDAQ </p>
+                            @Model.quoteType.shortName.ToString()
                         </div>
-                        @* <div class="card-body">
+                       <div class="card-body">
                     <h5 class="card-title">Special title treatment</h5>
                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                     <a href="#" >Go somewhere</a>
                     </div>
                     <div class="card-footer text-muted">
                     2 days ago
-                    </div>*@
+                    </div>
                     </div>
                 </li>
                 <li>
@@ -46,18 +46,18 @@
                             <p> Key Statistics </p>
                         </div>
                         <div class="card-body key-Stat">
-                            <p> Open </p>
-                            <p> High </p>
-                            <p> Volume </p>
-                            <p> Avg Vol(3 </p>
-                            <p> PrevClose </p>
-                            <p> Low </p>
-                            <p> Div Yield </p>
-                            <p> Ex-Div Date </p>
-                            <p> 52 Wk High </p>
-                            <p> 52 Wk Low </p>
-                            <p> MarketCap </p>
-                            <p> Dividend </p>
+                            <p> Open : @Model.financialData </p>
+                            <p> High : @Model.summaryDetail.dayHigh.fmt.ToString() </p>
+                            <p> Volume : @Model.summaryDetail.regularMarketVolume.fmt.ToString() </p>
+                            <p> Avg Vol(3M) : @Model.price.averageDailyVolume3Month.fmt.ToString() </p>
+                            <p> PrevClose : @Model.summaryDetail.previousClose.fmt.ToString() </p>
+                            <p> Low : @Model..summaryDetail.dayLow.fmt.ToString() </p>
+                            <p> Div Yield : @Model.summaryDetail.dividendYield.ToString() </p>
+                            <p> Ex-Div Date : Ex-DivDate </p>
+                            <p> 52 Wk High : @Model.summaryDetail.fiftyTwoWeekHigh.fmt.ToString() </p>
+                            <p> 52 Wk Low : @Model.summaryDetail.fiftyTwoWeekLow.fmt.ToString() </p>
+                            <p> MarketCap : @Model.price.marketCap.fmt.ToString() </p>
+                            <p> Dividend : Dividend </p>
                         </div>
                     </div>
                 </li>

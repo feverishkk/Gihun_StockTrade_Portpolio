@@ -21,7 +21,7 @@ namespace StockTrade.Application.Services.API
                 RequestUri = new Uri($"https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-summary?symbol={wishSymbol}&region=US"),
                 Headers =
                 {
-                    { "X-RapidAPI-Key", "c1b44bd912msh2f07e988adef1aap16ae60jsnac03fd75789e" },
+                    { "X-RapidAPI-Key", "e0092d0980msh7378f57b2934926p1f9726jsn298f6e64a622" },
                     { "X-RapidAPI-Host", "apidojo-yahoo-finance-v1.p.rapidapi.com" },
                 },
             };

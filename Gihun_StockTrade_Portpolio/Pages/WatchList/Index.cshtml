@@ -7,6 +7,7 @@
 @inject IWatchListRepository _watchListRepo;
 @inject IWatchListAPIRepository _watchListApi;
 @inject IStocksAPIRepository _stockRepo;
+@inject IMarketAPIRepository _marketRepo;
 @model Gihun_StockTrade_Portpolio.Pages.WatchList.IndexModel
 
 @{
@@ -14,6 +15,7 @@
     var userEmail = Request.Cookies["Email"];
     var userId = _watchListRepo.GetUserIdByEmail( userEmail ); 
     var wishList = _watchListRepo.GetUserWishList( userId );
+    var news = _marketRepo.GetMarketNews().Result.data.main.stream[0].content;
 }
 
 <head>
@@ -67,7 +69,7 @@
                     {
                         <tbody>
                             @{
-                                //var symbolInfo = _watchListApi.OnPostGetUserWishSymbolInfo(item).Result;
+                                var symbolInfo = _watchListApi.OnPostGetUserWishSymbolInfo(item).Result;
                                 // ToDo:
                                 // symbolInfo로 정보출력하는거 해야함 @symbolInfo.blabla 이런식으로 위에꺼 헤드 참고해서
                             }
@@ -88,27 +90,27 @@
                                         </td>
                                         <td class="sticky-col fourth-col"> @*@symbolInfo.quoteType.shortName.ToString()*@ </td>
                                             @*<td>Movement</td>*@
-                                        <td>Price</td>
-                                        <td>Price</td>
-                                        <td>Price</td>
-                                        <td>Price</td>
-                                        <td>Price</td>
-                                        <td>Price</td>
-                                        <td>Price</td>
-                                        <td>Price</td>
-                                        <td>Price</td>
-                                        <td>Price</td>
-                                        <td>Price</td>
-                                        <td>Price</td>
-                                        <td>Price</td>
-                                        <td>Price</td>
-                                        <td>Price</td>
-                                        <td>Price</td>
-                                        <td>Price</td>
-                                        <td>Price</td>
-                                        <td>Price</td>
-                                        <td>Price</td>
-                                        <td>Price</td>
+                                        <td>@symbolInfo.financialData.currentPrice.fmt.ToString()</td>
+                                        <td>@symbolInfo.price.postMarketPrice.fmt.ToString()</td>
+                                        <td>@symbolInfo.price.postMarketChange.fmt.ToString()</td>
+                                        <td>@symbolInfo.price.postMarketChangePercent.fmt.ToString()</td>
+                                        <td>@symbolInfo.summaryDetail.open.fmt.ToString()</td>
+                                        <td>@symbolInfo.summaryDetail.previousClose.fmt.ToString()</td>
+                                        <td>@symbolInfo.summaryDetail.dayHigh.fmt.ToString()</td>
+                                        <td>@symbolInfo.summaryDetail.dayLow.fmt.ToString()</td>
+                                        <td>@symbolInfo.summaryDetail.regularMarketVolume.fmt.ToString()</td>
+                                        <td>@symbolInfo.defaultKeyStatistics.annualHoldingsTurnover.ToString()</td>
+                                        <td>@symbolInfo.price.averageDailyVolume3Month.fmt.ToString()</td>
+                                        <td>@symbolInfo.price.regularMarketChangePercent.fmt.ToString()</td>
+                                        <td>@symbolInfo.summaryDetail.fiftyTwoWeekHigh.fmt.ToString()</td>
+                                        <td>@symbolInfo.summaryDetail.fiftyTwoWeekLow.fmt.ToString()</td>
+                                        <td>@symbolInfo.price.marketCap.fmt.ToString()</td>
+                                        <td>@symbolInfo.defaultKeyStatistics.forwardEps.fmt.ToString()</td>
+                                        <td>@symbolInfo.summaryDetail.dividendYield.ToString()</td>
+                                        <td>P/Dividend</td>
+                                        <td>Div Yield</td>
+                                        <td>% Turnover</td>
+                                        <td>@symbolInfo.price.exchangeName.ToString()</td>
                                     </form>
                                 }
                             </tr>
@@ -138,9 +140,7 @@
                         </div>
                     </div>
                     <div class="e-card-content">
-                        Advanced UWP: Communicating with Windows 10 and Other Apps, the second in a five-part series written by Succinctly series
-                        author Matteo Pagani. To download the complete white paper, and other papers in the series, visit
-                        the White Paper section of Syncfusion’s Technology Resource Portal.
+                        <p> Please <a asp-page="ApplicationUser/Login" asp-page-handler="Login"> Login </a> first. </p>
                     </div>
                 </div>
 
@@ -155,9 +155,7 @@
                         </div>
                     </div>
                     <div class="e-card-content">
-                        Advanced UWP: Communicating with Windows 10 and Other Apps, the second in a five-part series written by Succinctly series
-                        author Matteo Pagani. To download the complete white paper, and other papers in the series, visit
-                        the White Paper section of Syncfusion’s Technology Resource Portal.
+                        <p> @news.pubDate </p> <p> @news.title </p>
                     </div>
                 </div>
 
