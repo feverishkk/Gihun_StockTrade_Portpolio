@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using StockTrade.Application.Interfaces.API;
 using StockTrade.Application.ViewModel.API.StocksViewModel.ChartEntities;
 using StockTrade.Application.ViewModel.API.StocksViewModel.StockChart;
+using StockProject.Infrastructure.Shared;
 
 namespace Gihun_StockTrade_Portpolio.Pages.Stocks
 {
@@ -27,7 +28,8 @@ namespace Gihun_StockTrade_Portpolio.Pages.Stocks
         }
         public async Task OnPostGetStockChart( string symbol )
         {
-            var data = await _stocksAPIRepository.GetStockChart(symbol);
+            // 범위: Max, 간격은 1d의 데이터를 가져온다.
+            var data = await _stocksAPIRepository.GetStockChartMax( symbol );
 
             if (data == null)
             {
@@ -42,8 +44,9 @@ namespace Gihun_StockTrade_Portpolio.Pages.Stocks
             var high = result[0]?.indicators?.quote[0]?.high?.ToList();
             var low = result[0]?.indicators?.quote[0]?.low?.ToList();
             var vol = result[0]?.indicators?.quote[0]?.volume?.ToList();
+
             var timeStampList = result[0]?.timestamp?.ToList();
-            var timeStampToDateTime = ConvertFromUnixTimestamp( timeStampList );
+            var timeStampToDateTime = ConvertUnixTimestamp.ConvertFromUnixTimestamp( timeStampList );
 
             for( int i = 0; i < result[0].timestamp.Count(); i++ )
             {
@@ -74,25 +77,20 @@ namespace Gihun_StockTrade_Portpolio.Pages.Stocks
             for (int i = 0; i < result[0].timestamp.Count(); i++)
             {
                 stockChartViewModels.Add(new StockChartViewModel { close = close[i], date = timeStampToDateTime[i], 
-                                                                   high = high[i], low = low[i], open = open[i], volume = vol[i] });
+                                                                   high = high[i], low = low[i], open = open[i], volume = vol });
             }
 
             StockChartResult = stockChartViewModels;
+            ViewData["StockChartResult"] = stockChartViewModels;
             ViewData["StockName"] = result[0].meta.symbol.ToString();
         }
 
 
-        private List<string> ConvertFromUnixTimestamp( List<string> value )
-        {
-            var result = new List<string>();
+        
 
-            foreach (var item in value)
-            {
-                var date = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds( Convert.ToInt32( item ) ).ToString("MMM");
-                result.Add( date );
-            } 
 
-            return result;
-        }
+
+
+
     }
 }

@@ -1,0 +1,21 @@
+﻿@using StockTrade.Application.ViewModel.API.StocksViewModel.ChartEntities;
+
+@model List<StockChartViewModel>
+
+@{
+    var StockName = ViewData["StockName"] as string;
+    var Hilo = ViewData["HiloOpenClose"] as List<StockChartViewModel>;
+}
+
+@if( Model != null )
+{
+    <ejs-stockchart id="stockchart" title="@StockName Stock Price">
+        <e-stockchart-series-collection>
+            <e-stockchart-series type=HiloOpenClose dataSource="Hilo"> </e-stockchart-series>
+        </e-stockchart-series-collection>
+    </ejs-stockchart>
+}
+else
+{
+    <p> Please Select One Symbol To Show a Chart </p>
+}

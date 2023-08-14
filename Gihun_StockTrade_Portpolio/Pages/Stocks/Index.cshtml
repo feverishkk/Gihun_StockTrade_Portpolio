@@ -4,40 +4,86 @@
 @using StockTrade.Application.ViewModel.API.StocksViewModel.StockChart;
 @inject IWatchListRepository _watchListRepo;
 @inject IWatchListAPIRepository _watchAPIRepo;
+@inject IMarketAPIRepository _marketAPIRepo;
 @model Gihun_StockTrade_Portpolio.Pages.Stocks.IndexModel
 
 @{
     var userEmail = Request.Cookies["Email"];
     var userId = _watchListRepo.GetUserIdByEmail( userEmail );
     var watchlist = _watchListRepo.GetUserWishList( userId );
+    var news = _marketAPIRepo.GetMarketNews().Result;
 }
 
+<div class="row">
+    <div class="col-1">
+        @foreach ( var item in watchlist )
+        {
+            <div tabindex="0" class="e-card" id="basic">
+                <div class="e-card-header">
+                    <div class="e-card-header-caption">
 
-@foreach (var item in watchlist)
-{
-    <div tabindex="0" class="e-card" id="basic">
-        <div class="e-card-header">
-            <div class="e-card-header-caption">
+                        @{
+                            var symbolInfo = _watchAPIRepo.OnPostGetUserWishSymbolInfo(item).Result;
+                        }
 
-                @{
-                    var symbolInfo = _watchAPIRepo.OnPostGetUserWishSymbolInfo(item).Result;
-                }
-
-                <div class="e-card-header-title">
-                    <form method="post" asp-page="/Stocks/Index" asp-page-handler="GetStockChart" id="symbol" name="symbol">
-                        <button type="submit" value="@item" id="symbol" name="symbol">
-                            @item.ToString()
-                        </button>
-                    </form>
+                        <div class="e-card-header-title">
+                            <form method="post" asp-page="/Stocks/Index" asp-page-handler="GetStockChart" id="symbol" name="symbol">
+                                <button type="submit" value="@item" id="symbol" name="symbol">
+                                    @item.ToString()
+                                </button>
+                            </form>
+                        </div>
+                        <p>  @symbolInfo.financialData.currentPrice.fmt.ToString() </p>
+                        <div class="e-card-content">
+                            <p> After: @symbolInfo.price.postMarketChange.fmt.ToString() </p>
+                        </div>
+                    </div>
                 </div>
-                <p>  @symbolInfo.financialData.currentPrice.fmt.ToString() </p>
-                <div class="e-card-content">
-                    <p> After: @symbolInfo.price.postMarketChange.fmt.ToString() </p>
-                </div>
+
             </div>
-        </div>
-
+        }
     </div>
-}
+    <div class="col-11">
+        @Html.Partial("_StockChart.cshtml", Model.StockChartResult )
+    </div>
+</div>
 
-@Html.Partial("_StockChart.cshtml", Model.StockChartResult )
+<div class="row">
+    <div class="card text-center">
+        <div class="card-body">
+            <p class="card-text">
+            @{
+                var stream = news.data.main.stream;
+                string Url = string.Empty;
+            }
+
+            @foreach (var item in stream)
+            {
+                @if (@item.content.clickThroughUrl == null )
+                {
+                    Url = item.content.previewUrl.ToString();
+                }
+                else
+                {
+                    Url = item.content.clickThroughUrl.url.ToString();                 
+                }
+                <a href="@Url" target="_blank">
+                    @item.content.title.ToString();
+                </a>
+
+                <p>
+                    @news.data.main.stream[0].content.provider.displayName.ToString() 
+                </p>
+
+                <p>
+                    @news.data.main.stream[0].content.pubDate.ToShortDateString()
+                </p>
+                        
+                
+                <br />
+            }
+            </p>
+        </div>
+    </div>
+</div>
+

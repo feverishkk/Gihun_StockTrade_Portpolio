@@ -15,7 +15,7 @@
     var userEmail = Request.Cookies["Email"];
     var userId = _watchListRepo.GetUserIdByEmail( userEmail ); 
     var wishList = _watchListRepo.GetUserWishList( userId );
-    var news = _marketRepo.GetMarketNews().Result.data.main.stream[0].content;
+    var news = _marketRepo.GetMarketNews().Result.data.main.stream;
 }
 
 <head>
@@ -40,8 +40,6 @@
                             <th class="sticky-col second-col">No.</th>
                             <th class="sticky-col third-col">Symbol</th>
                             <th class="sticky-col fourth-col">Company Name</th>
-                            <!-- Movement는 나중에 시간나면 해보자 -->
-                            @*<th scope="col">Movement</th>*@
                             <th>Price</th>
                             <th>After Hours</th>
                             <th>Change</th>
@@ -70,8 +68,6 @@
                         <tbody>
                             @{
                                 var symbolInfo = _watchListApi.OnPostGetUserWishSymbolInfo(item).Result;
-                                // ToDo:
-                                // symbolInfo로 정보출력하는거 해야함 @symbolInfo.blabla 이런식으로 위에꺼 헤드 참고해서
                             }
                             <tr>
                                 @if (wishList == null)
@@ -81,15 +77,13 @@
                                 else
                                 {
                                     <form method="post" asp-page="/WatchList/Index" asp-page-handler="CompanyBrief">
-                                        @*<input type="hidden" value="@item.ToString()" name="clickedSymbol" id="clickedSymbol" />*@
                                         
                                         <td class="sticky-col first-col">opt</td>
                                         <td class="sticky-col second-col">1</td>
                                         <td class="sticky-col third-col">
                                             <input id="symbol-font" type="submit" value="@item.ToString()" name="clickedSymbol" />
                                         </td>
-                                        <td class="sticky-col fourth-col"> @*@symbolInfo.quoteType.shortName.ToString()*@ </td>
-                                            @*<td>Movement</td>*@
+                                        <td class="sticky-col fourth-col"> @symbolInfo.quoteType.longName.ToString() </td>
                                         <td>@symbolInfo.financialData.currentPrice.fmt.ToString()</td>
                                         <td>@symbolInfo.price.postMarketPrice.fmt.ToString()</td>
                                         <td>@symbolInfo.price.postMarketChange.fmt.ToString()</td>
@@ -98,16 +92,16 @@
                                         <td>@symbolInfo.summaryDetail.previousClose.fmt.ToString()</td>
                                         <td>@symbolInfo.summaryDetail.dayHigh.fmt.ToString()</td>
                                         <td>@symbolInfo.summaryDetail.dayLow.fmt.ToString()</td>
-                                        <td>@symbolInfo.summaryDetail.regularMarketVolume.fmt.ToString()</td>
-                                        <td>@symbolInfo.defaultKeyStatistics.annualHoldingsTurnover.ToString()</td>
+                                        <td>@symbolInfo.summaryDetail.regularMarketVolume.fmt</td>
+                                        <td>TurnOver</td>
                                         <td>@symbolInfo.price.averageDailyVolume3Month.fmt.ToString()</td>
                                         <td>@symbolInfo.price.regularMarketChangePercent.fmt.ToString()</td>
                                         <td>@symbolInfo.summaryDetail.fiftyTwoWeekHigh.fmt.ToString()</td>
                                         <td>@symbolInfo.summaryDetail.fiftyTwoWeekLow.fmt.ToString()</td>
                                         <td>@symbolInfo.price.marketCap.fmt.ToString()</td>
                                         <td>@symbolInfo.defaultKeyStatistics.forwardEps.fmt.ToString()</td>
-                                        <td>@symbolInfo.summaryDetail.dividendYield.ToString()</td>
                                         <td>P/Dividend</td>
+                                        <td>EPS</td>
                                         <td>Div Yield</td>
                                         <td>% Turnover</td>
                                         <td>@symbolInfo.price.exchangeName.ToString()</td>
@@ -155,7 +149,25 @@
                         </div>
                     </div>
                     <div class="e-card-content">
-                        <p> @news.pubDate </p> <p> @news.title </p>
+
+                        @foreach(var item in news)
+                        {
+                            string Url = string.Empty;
+
+                            @if (@item.content.clickThroughUrl == null)
+                            {
+                                Url = item.content.previewUrl.ToString();
+                            }
+                            else
+                            {
+                                Url = item.content.clickThroughUrl.url.ToString();
+                            }
+                            <p> @item.content.pubDate.ToShortTimeString() </p>
+
+                            <a href="Url" target="_blank">
+                                <p> @item.content.title.ToString() </p>
+                            </a>
+                        }
                     </div>
                 </div>
 
@@ -168,27 +180,6 @@
 
 </div>
 
-<script>
-    //$('input[type=hidden]').val()
-    //console.log(document.getElementById("clickedSymbol").value);
-    //let xhr = new XMLHttpRequest();
-    //let url = 'https://localhost:44367/Shared/_KeyStatistics';
-    //xhr.open("GET", url, true);
-    //xhr.onreadystatechange = function() {
-    //    if(this.readyState  == 4 && this.status == 200) {
-    //        console.log(this.responseText);
-    //    }
-    //}
-    //xhr.send();
-    //var button = document.getElementById("link");
-    //button.addEventListener("click", function(e) {
-    //   $.ajax({
-    //       tpye: "GET",
-    //        url: "https://localhost:44367/Shared/_KeyStatistics",
-    //        data: 
-    //   })
-    //})
-</script>
 
 <style>
 

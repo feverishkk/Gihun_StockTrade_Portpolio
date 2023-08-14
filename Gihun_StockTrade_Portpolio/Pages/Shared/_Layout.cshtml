@@ -89,7 +89,7 @@
 
                 <ul class="nav nav-pills nav-flush mb-auto text-center">
                     <li>
-                        <a asp-page="Index" class="nav-link py-3 border-bottom" title="Home" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <a asp-page="/Index" class="nav-link py-3 border-bottom" title="Home" data-bs-toggle="tooltip" data-bs-placement="right">
                             <span class="e-icons home e-info" width="24" height="24" role="img" aria-label="Home"><use xlink:href="#speedometer2" /></span>
                         </a>
                     </li>
@@ -99,18 +99,18 @@
                         </a>
                     </li>
                     <li>
-                        <a asp-page="Stock/Index" asp-page-handler="Stock" class="nav-link py-3 border-bottom" title="Stock" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <a asp-page="Stocks/Index" asp-page-handler="Stocks" class="nav-link py-3 border-bottom" title="Stock" data-bs-toggle="tooltip" data-bs-placement="right">
                             <span class="e-icons e-chart-2d-stacked-line-marked" width="24" height="24" role="img" aria-label="Stock"><use xlink:href="#speedometer2" /></span>
                         </a>
                     </li>
                     <li>
                         <a asp-page="Market/Index" asp-page-handler="Market" class="nav-link py-3 border-bottom" title="Market" data-bs-toggle="tooltip" data-bs-placement="right">
-                            <span class="e-icons fa fa-heart" width="24" height="24" role="img" aria-label="Market"><use xlink:href="#table" /></span>
+                            <span class="e-icons e-dock" width="24" height="24" role="img" aria-label="Market"><use xlink:href="#table" /></span>
                         </a>
                     </li>
                     <li>
                         <a asp-page="Trade/Index" asp-page-handler="Trade" class="nav-link py-3 border-bottom" title="Trade" data-bs-toggle="tooltip" data-bs-placement="right">
-                            <span class="e-icons fa fa-hammer" width="24" height="24" role="img" aria-label="Trade"><use xlink:href="#grid" /></span>
+                            <span class="e-icons e-appointment" width="24" height="24" role="img" aria-label="Trade"><use xlink:href="#grid" /></span>
                         </a>
                     </li>
                     <li>
@@ -119,7 +119,7 @@
                         </a>
                     </li>
                 </ul>
-                <div class="fixed-bottom">
+            <div class="fixed-bottom">
             <li>
                 <a asp-action="Index" asp-controller="Account" class="nav-link py-3 border-bottom" title="Account" data-bs-toggle="tooltip" data-bs-placement="right">
                     <span class="e-icons fa fa-comment " width="24" height="24" role="img" aria-label="Account"><use xlink:href="#people-circle" /></span>

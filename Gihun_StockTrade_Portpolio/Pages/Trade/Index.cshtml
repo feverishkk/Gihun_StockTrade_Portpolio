@@ -12,26 +12,40 @@
 
 }
 
+<div class="row">
+    <div class="col-1">
+        @foreach ( var item in watchlist )
+        {
+            <div tabindex="0" class="e-card" id="basic">
+                <div class="e-card-header">
+                    <div class="e-card-header-caption">
 
-@foreach (var item in watchlist)
-{
-    <div tabindex="0" class="e-card" id="basic">
-        <div class="e-card-header">
-            <div class="e-card-header-caption">
+                        @{
+                            var symbolInfo = _watchAPIRepo.OnPostGetUserWishSymbolInfo(item).Result;
+                        }
 
-                @{
-                    var symbolInfo = _watchAPIRepo.OnPostGetUserWishSymbolInfo(item).Result;
-                }
-
-                <div class="e-card-header-title">@item.ToString()</div>
-                <p>  @symbolInfo.financialData.currentPrice.fmt.ToString() </p>
-                <div class="e-card-content">
-                    <p> After: @symbolInfo.price.postMarketChange.fmt.ToString() </p>
+                        <div class="e-card-header-title">
+                            <form method="post" asp-page="/Trade/Index" asp-page-handler="GetStockChart" id="symbol" name="symbol">
+                                <button type="submit" value="@item" id="symbol" name="symbol">
+                                    @item.ToString()
+                                </button>
+                            </form>
+                        </div>
+                        <p>  @symbolInfo.financialData.currentPrice.fmt.ToString() </p>
+                        <div class="e-card-content">
+                            <p> After: @symbolInfo.price.postMarketChange.fmt.ToString() </p>
+                        </div>
+                    </div>
                 </div>
+
             </div>
-        </div>
+        }
     </div>
-}
+    <div class="col-11">
+        @Html.Partial("_TradeStockChart.cshtml", Model.StockChartResult )
+    </div>
+</div>
+
 
 <!--element which is going to render the Card-->
 <form method="post" asp-page="Trade/Index" asp-page-handler="Trade">

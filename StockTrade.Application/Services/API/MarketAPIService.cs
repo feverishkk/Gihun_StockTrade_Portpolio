@@ -23,7 +23,7 @@ namespace StockTrade.Application.Services.API
                 RequestUri = new Uri("https://apidojo-yahoo-finance-v1.p.rapidapi.com/screeners/get-symbols-by-predefined?scrIds=all_cryptocurrencies_us&start=0&count=50"),
                 Headers =
                 {
-                    { "X-RapidAPI-Key", "c1b44bd912msh2f07e988adef1aap16ae60jsnac03fd75789e" },
+                    { "X-RapidAPI-Key", "67299239f2msh92134da33510274p1b9b3djsne884838a4620" },
                     { "X-RapidAPI-Host", "apidojo-yahoo-finance-v1.p.rapidapi.com" },
                 },
             };
@@ -47,7 +47,7 @@ namespace StockTrade.Application.Services.API
                 RequestUri = new Uri("https://apidojo-yahoo-finance-v1.p.rapidapi.com/news/v2/list?region=US&snippetCount=8"),
                 Headers =
                 {
-                    { "X-RapidAPI-Key", "c1b44bd912msh2f07e988adef1aap16ae60jsnac03fd75789e" },
+                    { "X-RapidAPI-Key", "67299239f2msh92134da33510274p1b9b3djsne884838a4620" },
                     { "X-RapidAPI-Host", "apidojo-yahoo-finance-v1.p.rapidapi.com" },
                 },
                 Content = new StringContent("Pass in the value of uuids field returned right in this endpoint to load the next page, or leave empty to load first page")

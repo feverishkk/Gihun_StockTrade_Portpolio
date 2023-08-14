@@ -6,6 +6,6 @@ namespace StockTrade.Application.Interfaces.API
     public interface IStocksAPIRepository
     {
         Task<CompanyBrief> GetCompanyBrief( string symbol );
-        Task<StockChart> GetStockChart( string symbol );
+        Task<StockChart> GetStockChartMax( string symbol );
     }
 }

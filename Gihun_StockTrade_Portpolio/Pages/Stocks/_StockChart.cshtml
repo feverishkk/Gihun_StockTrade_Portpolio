@@ -3,7 +3,7 @@
 
 @model List<StockChartViewModel>
 @{
-    var data = ViewData["test"] as List<StockChartViewModel>;
+    var data = ViewData["StockChartResult"] as List<StockChartViewModel>;
     var title = ViewData["StockName"] as string;
 }
 
@@ -13,12 +13,11 @@
 }
 else
 {
-    <ejs-chart id="container" width="60%" title="@title Stock For 1 Year  High&Low&Open&Close Chart">
-        <e-chart-primaryxaxis valueType="Category"></e-chart-primaryxaxis>
-        <e-series-collection>
-            <e-series dataSource=@Model xName="date" high="high" low="low" open="open" close="close"
-                  type="@Syncfusion.EJ2.Charts.ChartSeriesType.HiloOpenClose" bearFillColor="#e56590" bullFillColor="#f8b883" enabletooltip="true" >
-            </e-series>
-        </e-series-collection>
-    </ejs-chart>
+    <ejs-stockchart id="stockchart" title="@title Stock Price" width="2050px" height="600px">
+        <e-stockchart-series-collection>
+            <e-stockchart-series type=Line dataSource=@data> </e-stockchart-series>
+        </e-stockchart-series-collection>
+        <e-stockchart-tooltipsettings enable="true"></e-stockchart-tooltipsettings>
+        <e-stockchart-crosshairsettings enable="true"></e-stockchart-crosshairsettings>
+    </ejs-stockchart>
 }
