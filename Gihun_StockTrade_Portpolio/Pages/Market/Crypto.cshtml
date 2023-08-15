@@ -1,28 +1,28 @@
 ﻿@page
 @using StockTrade.Application.Interfaces.API;
+@using StockTrade.Application.ViewModel.API.MarketViewModel.Crypto;
 @inject IMarketAPIRepository _marketAPIRepo; 
-@model Gihun_StockTrade_Portpolio.Pages.Market.CryptoModel
+@model Quote
 
 @{
-    // Crypto는 Screener/get-symbols-by-predefined에 있다
-    // 여기에서 Grid뷰로 생성하면 될듯?!!
-    var result = _marketAPIRepo.GetCrypto().Result.finance.result[0];
-
+    var result = _marketAPIRepo.GetCrypto().Result.finance.result[0].quotes;
+    //await Model.OnGet();
+    //var result = ViewData["Crypto"] as Crypto;
 }
 
-
-<ejs-grid id="Grid" dataSource="@result">
+<ejs-grid id="Grid" dataSource="@result" allowSorting=true>
     <e-grid-columns>
-        <e-grid-column field="@result.quotes[0].fullExchangeName" headerText="Exchange" textAlign="Right" width="120"></e-grid-column>
-        <e-grid-column field="@result.quotes[0].regularMarketPrice.fmt.ToString()" headerText="Price" width="150"></e-grid-column>
-        <e-grid-column field="@result.quotes[0].regularMarketChangePercent.fmt.ToString()" headerText="% Chnage" width="130" textAlign="Right" format="yMd"></e-grid-column>
-        <e-grid-column field="@result.quotes[0].regularMarketChange.fmt.ToString()" headerText="Change" width="120"></e-grid-column>
-        <e-grid-column field="@result.quotes[0].regularMarketOpen.fmt.ToString()" headerText="Open" width="120"></e-grid-column>
-        <e-grid-column field="@result.quotes[0].regularMarketPreviousClose.fmt.ToString()" headerText="Prev Close" width="120"></e-grid-column>
-        <e-grid-column field="@result.quotes[0].regularMarketDayHigh.fmt.ToString()" headerText="High" width="120"></e-grid-column>
-        <e-grid-column field="@result.quotes[0].regularMarketDayLow.fmt.ToString()" headerText="Low" width="120"></e-grid-column>
-        <e-grid-column field="@result.quotes[0].fiftyTwoWeekHigh.fmt.ToString()" headerText="52Wk High" width="120"></e-grid-column>
-        <e-grid-column field="@result.quotes[0].fiftyTwoWeekLow.fmt[0].ToString()" headerText="52Wk Low" width="120"></e-grid-column>
-        <e-grid-column field="@result.quotes[0].regularMarketVolume.fmt.ToString()" headerText="Volume" width="120"></e-grid-column>
+        <e-grid-column field="symbol" headerText="Symbol" textAlign="Left" width="120"></e-grid-column>
+        <e-grid-column field="fullExchangeName" headerText="Exchange" textAlign="Left" width="120"></e-grid-column>
+        <e-grid-column field="regularMarketPrice.fmt" headerText="Price" width="150"></e-grid-column>
+        <e-grid-column field="regularMarketChangePercent.fmt" headerText="% Chnage" width="130" textAlign="Right" format="yMd"></e-grid-column>
+        <e-grid-column field="regularMarketChange.fmt" headerText="Change" width="120"></e-grid-column>
+        <e-grid-column field="regularMarketOpen.fmt" headerText="Open" width="120"></e-grid-column>
+        <e-grid-column field="regularMarketPreviousClose.fmt" headerText="Prev Close" width="120"></e-grid-column>
+        <e-grid-column field="regularMarketDayHigh.fmt" headerText="High" width="120"></e-grid-column>
+        <e-grid-column field="regularMarketDayLow.fmt" headerText="Low" width="120"></e-grid-column>
+        <e-grid-column field="fiftyTwoWeekHigh.fmt" headerText="52Wk High" width="120"></e-grid-column>
+        <e-grid-column field="fiftyTwoWeekLow.fmt" headerText="52Wk Low" width="120"></e-grid-column>
+        <e-grid-column field="regularMarketVolume.fmt" headerText="Volume" width="120"></e-grid-column>
     </e-grid-columns>
 </ejs-grid>

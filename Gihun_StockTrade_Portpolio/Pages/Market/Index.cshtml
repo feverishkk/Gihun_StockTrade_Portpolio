@@ -4,7 +4,7 @@
 @model Gihun_StockTrade_Portpolio.Pages.Market.IndexModel
 @{
 
-    //var news =  _marketRepo.GetMarketNews().Result.data.main.stream;
+    var news =  _marketRepo.GetMarketNews().Result.data.main.stream;
 }
 
 <div style="height:30px; background-color:antiquewhite">
@@ -34,31 +34,24 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">News</h5>
-            @*@{
-                var now = DateTime.UtcNow;
-            }
-            @{
-                foreach (var item in news)
+            @foreach (var item in news)
+            {
+                string Url = string.Empty;
+
+                @if (@item.content.clickThroughUrl == null)
                 {
-                    var pubDate = item.content.pubDate;
-                    var hoursAgo = now - pubDate;
-                    <p>
-                        @hoursAgo.ToString(@"hh")Ago
-                    </p>
-                    @if (item.content?.clickThroughUrl?.url?.ToString() == null)
-                    {
-                        <a href="@item.content?.previewUrl?.ToString()">
-                            @item.content.title.ToString();
-                        </a>
-                    }
-                    else
-                    {
-                        <a href="@item.content?.clickThroughUrl?.url?.ToString()">
-                            @item?.content?.title.ToString()
-                        </a>
-                    }
-                 }
-            }*@
+                    Url = item.content.previewUrl.ToString();
+                }
+                else
+                {
+                    Url = item.content.clickThroughUrl.url.ToString();
+                }
+                <p> @item.content.pubDate.ToShortTimeString() </p>
+
+                <a href="Url" target="_blank">
+                    <p> @item.content.title.ToString() </p>
+                </a>
+            }
         </div>
     </div>
 </div>
