@@ -22,7 +22,7 @@ namespace Gihun_StockTrade_Portpolio.Pages.ApplicationUser
             }
             else
             {
-                return RedirectToPage("CustomPage/400_BadRequest");
+                return RedirectToPage("/CustomPage/400_BadRequest");
             }
 
             return RedirectToPage("/Index");

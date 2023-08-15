@@ -32,14 +32,14 @@ namespace Gihun_StockTrade_Portpolio.Pages.WatchList
 
             if( user == null || user == string.Empty || symbol == null || symbol == string.Empty ) 
             {
-                return RedirectToPage( "400_BadRequest" );
+                return RedirectToPage("/CustomPage/404_NotFound");
             }
 
             var userId = _watchListRepo.GetUserIdByEmail( user.ToString() );
 
             if( userId == string.Empty || userId == null )
             {
-                return RedirectToPage("404_NotFound");
+                return RedirectToPage("/CustomPage/404_NotFound");
             }
 
             var symbolList = _watchListRepo.SymbolList();
@@ -49,7 +49,7 @@ namespace Gihun_StockTrade_Portpolio.Pages.WatchList
             
             if( existCheck == false )
             {
-                return RedirectToPage("Cannot_Find");
+                return RedirectToPage("/CustomPage/404_NotFound");
             }
 
             // 모든 조건이 부합한다면

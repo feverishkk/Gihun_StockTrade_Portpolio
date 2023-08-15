@@ -32,22 +32,22 @@ namespace Gihun_StockTrade_Portpolio.Pages.Trade
         {
             if( !ModelState.IsValid )
             {
-                return RedirectToPage("/Custom/404_NotFound");
+                return RedirectToPage("/CustomPage/404_NotFound");
             }
 
             if( model.userId == string.Empty || model.userId == null || model.symbol == string.Empty || model.symbol == null )
             {
-                return RedirectToPage("/Custom/500_BadRequest");
+                return RedirectToPage("/CustomPage/404_NotFound");
             }
 
             if( model.symbolPrice == 0 || model.symbolQuantities == 0 ) 
             {
-                return RedirectToPage("/Custom/500_BadRequest");
+                return RedirectToPage("/CustomPage/404_NotFound");
             }
 
             if( model.flag > 3 || model.flag < 0 )
             {
-                return RedirectToPage("/Custom/500_BadRequest");
+                return RedirectToPage("/CustomPage/404_NotFound");
             }
 
             var symbolList = _watchListRepo.SymbolList();
@@ -56,7 +56,7 @@ namespace Gihun_StockTrade_Portpolio.Pages.Trade
 
             if ( isExistSymbol == false )
             {
-                return RedirectToPage("/Custom/404_NotFound");
+                return RedirectToPage("/CustomPage/404_NotFound");
             }
 
             var result = await _tradeRepo.Trade( model );
@@ -68,7 +68,7 @@ namespace Gihun_StockTrade_Portpolio.Pages.Trade
             }
             else
             {
-                return RedirectToPage("/Custom/500_BadRequest");
+                return RedirectToPage("/CustomPage/500_ServerError");
             }
         }
 
