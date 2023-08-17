@@ -5,9 +5,6 @@ namespace StockTrade.Application.Interfaces
 {
     public interface IApplicationUserRepository
     {
-
-        //void Register(RegisterViewModel model);
-
         SqlParameter Register(RegisterViewModel model);
 
     }

@@ -12,30 +12,39 @@
 }
 else
 {
-    <h6> Performance </h6>
+    <h3> Performance </h3>
     var result = Model.finance.result;
     var pf = result[0].portfolio;
     var symbols = result[0].symbols.UPS;
 
-    <p> @pf.oneDayPercentChange.ToString() </p>
+    <p class="pHeader"> OneDayPercentChange: @pf.oneDayPercentChange.ToString() </p>
     <br />
-    <p> @pf.oneMonthPercentChange.ToString() </p>
+    <p class="pHeader"> OneMonthPercentChange: @pf.oneMonthPercentChange.ToString() </p>
     <br />
-    <p> @pf.oneYearPercentChange.ToString() </p>
+    <p class="pHeader"> OneYearPercentChange: @pf.oneYearPercentChange.ToString() </p>
     <br />
-    <p> @pf.lifetimePercentChange.ToString() </p>
+    <p class="pHeader"> LifetimePercentChange : @pf.lifetimePercentChange.ToString() </p>
     <br />
-    <p> @pf.originTimestamp.ToString() </p>
+    <p> class="pHeader" OriginTimestamp : @pf.originTimestamp.ToString() </p>
     <br />
-    <p> @pf.updatedAt.ToString() </p>
+    <p class="pHeader"> UpdatedAt:  @pf.updatedAt.ToString() </p>
     <br />
     <br />
 
-    <p> @symbols.oneDayPercentChange.ToString() </p>
-    <p> @symbols.oneMonthPercentChange.ToString() </p>
-    <p> @symbols.oneYearPercentChange.ToString() </p>
-    <p> @symbols.lifetimePercentChange.ToString() </p>
-    <p> @symbols.originTimestamp.ToString() </p>
-    <p> @symbols.updatedAt.ToString() </p>
+    <h5> Symbols </h5>
+    <p class="pHeader"> OneDayPercentChange    -  </p> <p>  @symbols.oneDayPercentChange.ToString() </p>
+    <p class="pHeader"> OneMonthPercentChange  -  </p> <p>  @symbols.oneMonthPercentChange.ToString() </p>
+    <p class="pHeader"> OneYearPercentChange   -  </p> <p>  @symbols.oneYearPercentChange.ToString() </p>
+    <p class="pHeader"> LifetimePercentChange  -  </p> <p>  @symbols.lifetimePercentChange.ToString() </p>
+    <p class="pHeader"> OriginTimestamp        -  </p> <p>  @symbols.originTimestamp.ToString() </p>
+    <p class="pHeader"> UpdatedAt              -  </p> <p>  @symbols.updatedAt.ToString() </p>
 
 }
+
+<style>
+    .pHeader {
+        color:black;
+        font-size: 15px;
+        margin-left: 3px;
+    }
+</style>

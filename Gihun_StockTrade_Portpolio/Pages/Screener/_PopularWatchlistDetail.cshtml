@@ -7,28 +7,33 @@
 @{
 }
 
-@if( Model == null )
+@if (Model == null)
 {
-    <p> Please Select One Symobl </p>
+    <p> 　 </p>
 }
 else
 {
-    <h6> watch Details </h6>
-    @foreach (var item in Model.portfolios)
-    {
-        @foreach (var pf in item.positions)
+    <div tabindex="0" class="e-card" id="basic">
+        <h3> watch Details </h3>
+        @foreach (var item in Model.portfolios)
         {
-            @pf.symbol<br />
-            @foreach (var result in @pf.lots)
+            @foreach (var pf in item.positions)
             {
-                @result.tradeDate.ToString()
-                <br />
-                @result.purchasePrice.ToString()
-                <br />
-                @result.quantity.ToString()
-                <br />
+                <div class="e-card-header-title"> @pf.symbol </div>
+
+                @foreach (var result in @pf.lots)
+                {
+                    <div class="e-card-content">
+                        <h6> TradeDate </h6> <p> : @result.tradeDate.ToString() </p>
+                        <br />
+                        <h6> PurchasePrice </h6>  <p> : @result.purchasePrice.ToString()</p>
+                        <br />
+                        <h6> Quantity </h6> <p>  : @result.quantity.ToString() </p>
+                        <br />
+                    </div>
+                }
             }
         }
-    }
+    </div>
 }
 
