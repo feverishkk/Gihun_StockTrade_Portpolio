@@ -99,43 +99,10 @@ namespace Gihun_StockTrade_Portpolio.Pages.WatchList
             {
                 return null;
             }
-            this.companyBrief = info;
-            ViewData["companyBrief"] = info;
+            companyBrief = info;
 
             return null;
         }
-
-        //public async Task OnPostMovement( string symbol )
-        //{
-        //    var data = await _stocksRepo.GetStockChart1Day( symbol );
-
-        //    if( data == null )
-        //    {
-        //        return;
-        //    }
-
-        //    List<Result> result = new List<Result>();
-
-
-        //    var ticker = result[0].meta.symbol.ToString();
-        //    var close  = result[0].indicators.quote[0].close;
-        //    var vol    = result[0].indicators.quote[0].volume;
-
-        //    for (int i =  0; i < result.Count; i++)
-        //    {
-        //        if( result[i].indicators.quote[0].close == null )
-        //        {
-        //            result[0].indicators.quote[0].close[i] = 0;
-        //        }
-        //    }
-
-        //    StockChartViewModel stockChartViewModels = new StockChartViewModel();
-
-        //    stockChartViewModels.close = close; 
-
-        //    StockChartMovement = stockChartViewModels;
-
-        //}
 
 
 

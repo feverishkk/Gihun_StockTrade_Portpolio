@@ -1,0 +1,81 @@
+﻿@using StockTrade.Application.ViewModel.DashBoard;
+@model List<DashBoardChartViewModel>
+
+@{
+    var symbolName = ViewData["SymbolName"] as string;
+}
+<div class="control-section" align='center' style="height:400px;">
+    <ejs-accumulationchart id="container" title="Dash Board Properties" enableAnimation="false" enableBorderOnMouseMove="false">
+        <e-accumulationchart-center x="50%" y="50%"></e-accumulationchart-center>
+        <e-accumulationchart-tooltipsettings enable="true" format="<b>${point.x}</b><br> Stock Share: <b>${point.y}%</b>" header=""></e-accumulationchart-tooltipsettings>
+        <e-accumulationchart-legendsettings visible="false">
+        </e-accumulationchart-legendsettings>
+        <e-accumulation-series-collection>
+            <e-accumulation-series dataSource="Model" xName="Quantities" yName="Property" innerRadius="0%" explodeIndex="0" explode="true" explodeOffset="10%">
+                <e-accumulationseries-datalabel name="Symbol" visible="true" position="@Syncfusion.EJ2.Charts.AccumulationLabelPosition.Outside">
+                    <e-font fontWeight="600"></e-font>
+                    <e-connectorstyle length="20px" type="@Syncfusion.EJ2.Charts.ConnectorType.Curve"></e-connectorstyle>
+                </e-accumulationseries-datalabel>
+            </e-accumulation-series>
+        </e-accumulation-series-collection>
+        <e-accumulationchart-legendsettings visible="true" position=Bottom width="300" height="50" toggleVisibility="false" title="User Owned Quantities"></e-accumulationchart-legendsettings>
+        
+    </ejs-accumulationchart>
+    <ejs-grid id="Grid" dataSource="@Model" allowPaging="true">
+
+        <e-grid-columns>
+            <e-grid-column field="Symbol" headerText="Symbol" width="120"></e-grid-column>
+            <e-grid-column field="AvgPrice" headerText="AvgPrice" width="150"></e-grid-column>
+            <e-grid-column field="Quantities" headerText="Quantities" width="130"></e-grid-column>
+            <e-grid-column field="Property" headerText="Property" width="120"></e-grid-column>
+        </e-grid-columns>
+
+    </ejs-grid>
+    
+</div>
+
+
+
+
+
+
+
+@*@using Syncfusion.EJ2
+@section ControlsSection{
+@{
+    var piecenter = new
+    {
+        x = "50%",
+        y = "50%"
+    };
+
+}
+<div class="control-section" align='center'>
+    <ejs-accumulationchart id="container" title="Browser Market Share" load="load" enableAnimation="false" enableBorderOnMouseMove="false">
+        <e-accumulationchart-center x="50%" y="50%"></e-accumulationchart-center>
+        <e-accumulationchart-tooltipsettings enable="true" format="<b>${point.x}</b><br>Browser Share: <b>${point.y}%</b>" header=""></e-accumulationchart-tooltipsettings>
+        <e-accumulationchart-legendsettings visible="false">
+        </e-accumulationchart-legendsettings>
+        <e-accumulation-series-collection>
+            <e-accumulation-series dataSource="ViewBag.ChartPoints" xName="Browser" yName="Users" name="Browser" innerRadius="0%" explodeIndex="0" explode="true" explodeOffset="10%">
+                <e-accumulationseries-datalabel name="DataLabelMappingName" visible="true" position="@Syncfusion.EJ2.Charts.AccumulationLabelPosition.Outside">
+                    <e-font fontWeight="600"></e-font>
+                    <e-connectorstyle length="20px" type="@Syncfusion.EJ2.Charts.ConnectorType.Curve"></e-connectorstyle>
+                </e-accumulationseries-datalabel>
+            </e-accumulation-series>
+        </e-accumulation-series-collection>
+    </ejs-accumulationchart>
+</div>
+    
+<script>
+    function load(args) {
+        var indexedTheme = location.hash.split('/')[1];
+        indexedTheme = indexedTheme ? indexedTheme : 'Material';
+        args.accumulation.theme = (indexedTheme.charAt(0).toUpperCase() + indexedTheme.slice(1).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast'));
+        args.accumulation.series[0].startAngle = ej.base.Browser.isDevice ? 70 : 30;
+        args.accumulation.series[0].radius = ej.base.Browser.isDevice ? "40%" : "60%";
+    }
+
+</script>
+}
+*@

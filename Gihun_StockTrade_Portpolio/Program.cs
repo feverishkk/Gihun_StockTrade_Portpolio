@@ -14,7 +14,8 @@ builder.Services.AddScoped<IWatchListAPIRepository, WatchListAPIService>();
 builder.Services.AddScoped<IStocksAPIRepository, StocksAPIService>();
 builder.Services.AddScoped<IMarketAPIRepository, MarketAPIService>();
 builder.Services.AddScoped<IScreenerAPIRepository, ScreenerAPIService>(); 
-builder.Services.AddScoped<ITradeRepository, TradeService>();   
+builder.Services.AddScoped<ITradeRepository, TradeService>();
+builder.Services.AddScoped<IDashBoardRepository, DashBoardService>();
 
 // Add services to the container.
 builder.Services.AddRazorPages();
@@ -44,8 +45,6 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-    
-
     app.UseExceptionHandler("/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();

@@ -1,31 +1,83 @@
 ﻿@page
+@using StockTrade.Application.Interfaces.API;
+@using StockTrade.Application.Interfaces;
 @using static Gihun_StockTrade_Portpolio.Pages.DashBoard.IndexModel;
 @model Gihun_StockTrade_Portpolio.Pages.DashBoard.IndexModel
-
+@inject IMarketAPIRepository _marketAPIRepo;
+@inject IWatchListRepository _watchListRepo;
+@inject IWatchListAPIRepository _watchListAPIRepo;
 
 @{
     spacingModel modelValue = new spacingModel();
     modelValue.cellSpacing = new double[] { 10, 10 };
+    var userEmail = Request.Cookies["Email"];
+    var userId = _watchListRepo.GetUserIdByEmail( userEmail );
+    //var news = _marketAPIRepo.GetMarketNews().Result.data.main.stream;
+    var wishList = _watchListRepo.GetUserWishList( userId );
+    await Model.OnPostUserProperties( userId );
 }
+
 
 <div class=" control-section">
     <!--  DashboardLayout element declaration -->
     <ejs-dashboardlayout id="defaultLayout" columns="6" cellSpacing="modelValue.cellSpacing">
         <e-dashboardlayout-panels>
-            <e-dashboardlayout-panel sizeX="1" sizeY="1" row="0" col="0" content="<div>0</div>">
+
+            <e-dashboardlayout-panel sizeX="1" sizeY="2" row="0" col="0"> <!-- 0 -->
+                <e-content-template>
+                    <div tabindex="0" class="e-card" >
+                        <div class="e-card-header" >
+                            <div class="e-card-header-caption" style="margin-top:100px;">
+                                <div class="e-card-header-title"> My WishList </div>
+                                <div class="e-card-sub-title" > 
+                                    @foreach ( var item in wishList )
+                                    {
+                                        <form method="post" asp-page="/DashBoard/Index" asp-page-handler="CompanyBrief">
+                                            <td class="sticky-col third-col">
+
+                                                <input id="symbol-font" type="submit" value="@item.ToString()" name="clickedSymbol" />
+                                            </td>
+                                        </form>
+                                        var symbolInfo = _watchListAPIRepo.OnPostGetUserWishSymbolInfo(item).Result;
+                                        <div class="card-subtitle" >
+                                            <p>LongName :</p> <p> @symbolInfo.quoteType.longName.ToString() </p>
+                                            <p>RegularMarketOpen Price:</p> <p> @symbolInfo.price.regularMarketOpen.fmt.ToString()</p>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </e-content-template>
             </e-dashboardlayout-panel>
-            <e-dashboardlayout-panel sizeX="3" sizeY="2" row="0" col="1" content="<div>1</div>">
+
+            <e-dashboardlayout-panel sizeX="3" sizeY="2" row="0" col="1" > <!-- 1 -->
+                <e-content-template>
+                    @if( userId == null )
+                    {
+                        <p> Please Login </p>
+                    }
+                    else
+                    {
+                        <partial name="_PropertiesOfUserOwnedAndGriedView" model="Model.DashBoardChartView" />
+                    }
+                </e-content-template>
             </e-dashboardlayout-panel>
-            <e-dashboardlayout-panel sizeX="1" sizeY="3" row="0" col="4" content="<div>2</div>">
+
+            <e-dashboardlayout-panel sizeX="0" sizeY="2" row="0" col="4">
+                <e-content-template>
+                    @if (userId == null)
+                    {
+                        <p> Please Login </p>
+                    }
+                    else
+                    {
+                        <partial name="_KeyStatistics" model="Model.companyBrief" />
+                    }
+                </e-content-template>
             </e-dashboardlayout-panel>
-            <e-dashboardlayout-panel sizeX="1" sizeY="1" row="1" col="0" content="<div>3</div>">
-            </e-dashboardlayout-panel>
-            <e-dashboardlayout-panel sizeX="2" sizeY="1" row="2" col="0" content="<div>4</div>">
-            </e-dashboardlayout-panel>
-            <e-dashboardlayout-panel sizeX="1" sizeY="1" row="2" col="2" content="<div>5</div>">
-            </e-dashboardlayout-panel>
-            <e-dashboardlayout-panel sizeX="1" sizeY="1" row="2" col="3" content="<div>6</div>">
-            </e-dashboardlayout-panel>
+            
         </e-dashboardlayout-panels>
     </ejs-dashboardlayout>
     <!-- end of dashboardlayout element -->
@@ -37,11 +89,11 @@
         padding: 10px;
     }
 
-        #defaultLayout .e-panel .e-panel-container {
-            vertical-align: middle;
-            font-weight: 600;
-            font-size: 20px;
-            text-align: center;
-            line-height: 160px;
-        }
+    #defaultLayout .e-panel .e-panel-container {
+        vertical-align: middle;
+        font-weight: 600;
+        font-size: 20px;
+        text-align: center;
+        line-height: 160px;
+    }
 </style>
