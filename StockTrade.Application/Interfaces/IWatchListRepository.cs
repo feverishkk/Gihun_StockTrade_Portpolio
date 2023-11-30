@@ -13,7 +13,7 @@ namespace StockTrade.Application.Interfaces
     {
         public List<StockSymbol>? SymbolList();
         string GetUserIdByEmail(string email);
-        SqlParameter AddSymbol( string userId, string symbol );
+        Task<SqlParameter> AddSymbol( string userId, string symbol );
 
         List<string> GetUserWishList( string userId ); 
 

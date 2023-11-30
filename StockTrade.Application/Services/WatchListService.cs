@@ -29,7 +29,7 @@ namespace StockTrade.Application.Services
 
             return list;
         }
-        public SqlParameter AddSymbol( string Email, string symbol)
+        public async Task<SqlParameter> AddSymbol( string Email, string symbol)
         {
             using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
             {
@@ -38,7 +38,6 @@ namespace StockTrade.Application.Services
 
                 cmd.Parameters.AddWithValue("@UserId", Email);
                 cmd.Parameters.AddWithValue("@Symbol", symbol );
-                //cmd.Parameters.AddWithValue("@Result", 1);
 
                 SqlParameter outputParam = new SqlParameter();
                 outputParam.ParameterName = "@Result";
@@ -46,9 +45,9 @@ namespace StockTrade.Application.Services
                 outputParam.SqlDbType = SqlDbType.Int;
                 cmd.Parameters.Add(outputParam);
 
-                connection.Open();
+                await connection.OpenAsync();
 
-                cmd.ExecuteNonQuery();
+                await cmd.ExecuteNonQueryAsync();
 
                 return outputParam;
             }
