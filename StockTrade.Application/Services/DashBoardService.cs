@@ -47,7 +47,7 @@ namespace StockTrade.Application.Services
                     dashBoardChartViewList.Add( dashBoardChartView );
                 }
                 
-                connection.Close();
+                await connection.CloseAsync();
 
                 return dashBoardChartViewList;
             }
