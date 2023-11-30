@@ -91,8 +91,8 @@ namespace StockTrade.Application.Services
                         result.Add(reader.GetString(0));
                     }
                 }
-               
-                return result;
+
+                return result; 
             }
         }
 

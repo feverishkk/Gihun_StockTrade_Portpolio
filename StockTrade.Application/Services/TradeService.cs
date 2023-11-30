@@ -1,13 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using StockTrade.Application.Interfaces;
-using StockTrade.Application.ViewModel.API.MarketViewModel;
-using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using StockTrade.Application.ViewModel.Trade;
 
 namespace StockTrade.Application.Services
