@@ -33,7 +33,7 @@ namespace StockTrade.Application.Services
                 cmd.Parameters.AddWithValue( "@UserId", userId );
 
                 connection.Open();
-                SqlDataReader reader = cmd.ExecuteReader();
+                 SqlDataReader reader = cmd.ExecuteReader();
 
                 List<DashBoardChartViewModel> dashBoardChartViewList = new List<DashBoardChartViewModel>();
                 

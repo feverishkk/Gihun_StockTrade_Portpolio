@@ -36,9 +36,9 @@ namespace StockTrade.Application.Services
                 outputParam.SqlDbType = SqlDbType.Int;
                 cmd.Parameters.Add(outputParam);
 
-                connection.Open();
+                await connection.OpenAsync();
 
-                cmd.ExecuteNonQuery();
+                await cmd.ExecuteNonQueryAsync();
 
                 return outputParam;
             }
