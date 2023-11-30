@@ -1,2 +1,3 @@
 # Gihun_StockTrade_Portpolio
-Mdae By Gihun
+https://github.com/feverishkk/Gihun_StockTrade_Portpolio/tree/Dev
+에 있습니다.
