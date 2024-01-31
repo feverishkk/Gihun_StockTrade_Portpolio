@@ -5,7 +5,7 @@ using StockTrade.Application.Services.API;
 
 var builder = WebApplication.CreateBuilder(args);
 //Register Syncfusion license
-Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NGaF5cXmdCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdgWXhcd3RWRmlcWUd3W0c=");
+Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("This is Secret!");
 
 // Add Repositories
 builder.Services.AddScoped<IApplicationUserRepository, ApplicationUserService>();
